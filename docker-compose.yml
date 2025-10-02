@@ -1,7 +1,32 @@
 version: '3.8'
 
 services:
-  nginx:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - lemp-net
+    restart: always
+    
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - lemp-net
+    restart: unless-stopped
+
+    nginx:
     image: nginx:alpine
     ports:
       - 80
@@ -15,32 +40,6 @@ services:
     networks:
       - lemp-net
     restart: unless-stopped
-    
-
-  php:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./app:/var/www/html
-    depends_on:
-      - db
-    networks:
-      - lemp-net
-    restart: unless-stopped
-
-  db:
-    image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - lemp-net
-    restart: always
 
 networks:
   lemp-net:
