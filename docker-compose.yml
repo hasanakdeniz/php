@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - lemp-net
+      - lemp
     restart: always
     
   php:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     networks:
-      - lemp-net
+      - lemp
     restart: always
 
   nginx:
@@ -37,7 +37,7 @@ services:
     depends_on:
       - php
     networks:
-      - lemp-net
+      - lemp
     restart: always
 
 networks:
