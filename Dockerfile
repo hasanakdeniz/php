@@ -17,6 +17,8 @@ RUN composer --version
 # Çalışma dizini ayarla
 WORKDIR /var/www/html
 
+# Uygulama kodunu kopyala (app klasöründen)
+COPY app /var/www/html
 
 # Composer dependencies'i yükle (eğer composer.json varsa)
 RUN if [ -f app/composer.json ]; then \
