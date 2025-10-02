@@ -40,7 +40,7 @@ services:
 
 networks:
   lemp:
-    driver: local
+    external: true
 
 volumes:
   db-data:
