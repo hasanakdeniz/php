@@ -42,6 +42,7 @@ networks:
   lemp:
     external: true
     name: dokploy-network
+    driver: local
 
 volumes:
   db-data:
