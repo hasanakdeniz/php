@@ -17,6 +17,7 @@ RUN composer --version
 # Çalışma dizini ayarla
 WORKDIR /var/www/html
 
+# Uygulama kodunu kopyala (app klasöründen)
 COPY app /var/www/html
 
 # Composer dependencies'i yükle (eğer composer.json varsa)
@@ -34,6 +35,7 @@ RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/custom.ini \
 # Kullanıcı izinlerini ayarla
 RUN chown -R www-data:www-data /var/www/html
 
+# PHP-FPM'in varsayılan portunu tanımla
 EXPOSE 9000
 
 # PHP-FPM'i çalıştır
