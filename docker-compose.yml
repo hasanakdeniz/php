@@ -12,7 +12,7 @@ services:
       - db-data:/var/lib/mysql
     networks:
       - lemp-net
-    restart: unless-stopped
+    restart: always
     
   php:
     build:
@@ -24,7 +24,7 @@ services:
       - db
     networks:
       - lemp-net
-    restart: unless-stopped
+    restart: always
 
   nginx:
     image: nginx:alpine
@@ -38,7 +38,7 @@ services:
       - php
     networks:
       - lemp-net
-    restart: unless-stopped
+    restart: always
 networks:
   lemp-net:
 
