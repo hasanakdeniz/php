@@ -34,5 +34,7 @@ RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/custom.ini \
 # Kullanıcı izinlerini ayarla
 RUN chown -R www-data:www-data /var/www/html
 
+EXPOSE 9000
+
 # PHP-FPM'i çalıştır
 CMD ["php-fpm"]
