@@ -14,6 +14,8 @@ services:
       - php
     networks:
       - lemp-net
+    restart: unless-stopped
+    
 
   php:
     build:
@@ -25,6 +27,7 @@ services:
       - db
     networks:
       - lemp-net
+    restart: unless-stopped
 
   db:
     image: mariadb:latest
@@ -37,6 +40,7 @@ services:
       - db-data:/var/lib/mysql
     networks:
       - lemp-net
+    restart: unless-stopped
 
 networks:
   lemp-net:
