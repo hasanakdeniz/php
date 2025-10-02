@@ -39,6 +39,11 @@ services:
     networks:
       - lemp-net
     restart: always
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.nginx.rule=Host(`localhost`)"
+    - "traefik.http.services.nginx.loadbalancer.server.port=80"
+    - "traefik.http.middlewares.strip.path.prefix=/app/"
 networks:
   lemp-net:
 
