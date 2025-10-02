@@ -2,7 +2,7 @@
     "name": "lemp-project",
     "description": "Basic LEMP PHP project for Dokploy",
     "require": {
-        "php": "^8.1",
+        "php": "^8.3",
         "ext-pdo": "*"
     },
     "require-dev": {
