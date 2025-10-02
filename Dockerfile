@@ -17,11 +17,9 @@ RUN composer --version
 # Çalışma dizini ayarla
 WORKDIR /var/www/html
 
-# Uygulama kodunu kopyala (app klasöründen)
-COPY app /var/www/html
 
 # Composer dependencies'i yükle (eğer composer.json varsa)
-RUN if [ -f composer.json ]; then \
+RUN if [ -f app/composer.json ]; then \
         composer install --no-dev --optimize-autoloader; \
     else \
         echo "composer.json bulunamadı, bağımlılıklar yüklenmedi."; \
