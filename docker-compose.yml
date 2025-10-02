@@ -41,6 +41,7 @@ services:
 networks:
   lemp:
     external: true
+    name: dokploy-network
 
 volumes:
   db-data:
