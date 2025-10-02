@@ -1,3 +1,3 @@
 <?php
-echo"merhaba sudosu!";
+echo phpinfo();
 ?>
