@@ -38,8 +38,8 @@ services:
       - php
     networks:
       - lemp-net
+    user: "33:33"
     restart: unless-stopped
-    user: 33
 networks:
   lemp-net:
 
