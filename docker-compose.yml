@@ -39,7 +39,7 @@ services:
     networks:
       - lemp-net
     restart: unless-stopped
-    user: "33:33"
+    user: 33
 networks:
   lemp-net:
 
