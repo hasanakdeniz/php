@@ -41,7 +41,7 @@ services:
 networks:
   dokploy-network:
     external: true
-    driver: local
+    driver: overlay
 
 volumes:
   db-data:
