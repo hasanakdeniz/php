@@ -41,7 +41,7 @@ services:
     restart: always
 
 networks:
-  lemp-net:
+  lemp:
     driver: local
 
 volumes:
