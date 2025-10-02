@@ -9,7 +9,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - lemp
+      - dokploy-network
     restart: always
     
   php:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     networks:
-      - lemp
+      - dokploy-network
     restart: always
 
   nginx:
@@ -35,13 +35,12 @@ services:
     depends_on:
       - php
     networks:
-      - lemp
+      - dokploy-network
     restart: always
 
 networks:
-  lemp:
+  dokploy-network:
     external: true
-    name: dokploy-network
     driver: local
 
 volumes:
