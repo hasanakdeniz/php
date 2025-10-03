@@ -35,5 +35,9 @@ services:
     network: coolify
     restart: unless-stopped
 
+network:
+  coolify:
+    driver: local
+    
 volumes:
   db-data:
