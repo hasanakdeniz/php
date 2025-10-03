@@ -37,6 +37,18 @@ services:
     networks:
       - dokploy-network
     restart: unless-stopped
+    
+  sftp:
+    image: atmoz/sftp:latest
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - 22
+    environment:
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:1000:1000
+    networks:
+      - dokploy-network
+    restart: unless-stopped
 
 networks:
   dokploy-network:
