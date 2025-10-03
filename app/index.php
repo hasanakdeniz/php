@@ -1,43 +1,63 @@
+<?php
+// HTTP yanıt kodu 503 (Service Unavailable) olarak ayarlanır
+http_response_code(503);
+
+// Sayfanın yenilenmesini önlemek için önbellekleme başlıkları gönderilir
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merhaba <?php echo htmlspecialchars(explode('.', $_SERVER['HTTP_HOST'])[0]); ?></title>
-    <script src="/tw.js"></script>
+    <title>Bakımdayız</title>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9; /* Açık arka plan */
+            color: #333; /* Koyu metin */
+            text-align: center;
         }
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            padding: 40px;
+            border-radius: 8px;
+            background-color: #fff; /* Beyaz içerik kutusu */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+            max-width: 600px;
+            width: 90%;
         }
-        .link {
-            color: #3b82f6;
-            transition: color 0.2s;
+        h1 {
+            color: #007bff; /* Mavi başlık rengi */
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
         }
-        .link:hover {
-            color: #1d4ed8;
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
+        .icon {
+            font-size: 3em;
+            color: #ffc107; /* Sarı uyarı rengi */
+            margin-bottom: 15px;
+        }
+        /* İsteğe bağlı: Bir süre sonra otomatik yenileme (örneğin 1 saat sonra) */
+        /* meta http-equiv="refresh" content="3600" */
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="container mx-auto text-center py-8">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Merhaba Dünya, Merhaba <?php echo htmlspecialchars(explode('.', $_SERVER['HTTP_HOST'])[0]); ?>!
-        </h1>
-        <p class="text-lg md:text-xl text-gray-600 mb-6">
-            <a href="https://dokploy.com/" target="_blank" rel="noopener noreferrer" class="link font-semibold">Dokploy</a>'da 
-            deploy etmek üzere <?php echo htmlspecialchars(explode('.', $_SERVER['HTTP_HOST'])[0]); ?> için oluşturulmuş PHP versiyonunu inceleyebilirsin.
-        </p>
-        <p class="text-lg md:text-xl text-gray-600 mb-6">
-            <a href="https://sudosu.tr/" target="_blank" rel="noopener noreferrer" class="link font-semibold">Sudosu!</a>
-        </p>
-        <p class="text-lg md:text-xl text-gray-600">
-            <?php echo htmlspecialchars("PHP :)"); ?> <a href="https://github.com/hasanakdeniz/php">github</a>
-        </p>
-    </div>
+<body>
+    <div class="container">
+        <div class="icon">🛠️</div>
+        <h1>Bakımdayız</h1>
+        <p>Şu anda sitemizde planlı bir bakım çalışması yapıyoruz. Daha iyi bir deneyim sunmak için çalışıyoruz.</p>
+        <p>Kısa süre içinde geri döneceğiz. Anlayışınız için teşekkür ederiz!</p>
+        </div>
 </body>
 </html>
