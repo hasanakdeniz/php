@@ -58,7 +58,6 @@ header('Expires: 0');
         <h1>Bakımdayız</h1>
         <p>Şu anda sitemizde planlı bir bakım çalışması yapıyoruz. Daha iyi bir deneyim sunmak için çalışıyoruz.</p>
         <p>Kısa süre içinde geri döneceğiz. Anlayışınız için teşekkür ederiz!</p>
-        <p>Ademcim nasılsın, taşşanı gızlar yesin</p>
         </div>
 </body>
 </html>
