@@ -37,7 +37,7 @@
             <a href="https://sudosu.tr/" target="_blank" rel="noopener noreferrer" class="link font-semibold">Sudosu!</a>
         </p>
         <p class="text-lg md:text-xl text-gray-600">
-            <?php echo htmlspecialchars("PHP :) <a href='https://github.com/hasanakdeniz/php'>github</a>"); ?>
+            <?php echo htmlspecialchars("PHP :)"); ?> <a href="https://github.com/hasanakdeniz/php">github</a>
         </p>
     </div>
 </body>
