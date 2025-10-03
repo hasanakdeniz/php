@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   sftp:
-    image: corilus/sftp:alpine
+    image: atmoz/sftp
     volumes:
       - ./app:/var/www/html
     ports:
