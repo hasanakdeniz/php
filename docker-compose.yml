@@ -45,7 +45,7 @@ services:
     ports:
      - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:www-data:www-data
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:82
     networks:
       - dokploy-network
     restart: unless-stopped
