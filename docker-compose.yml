@@ -1,61 +1,47 @@
-version: '3.8'  # Coolify genellikle 3.8 veya üstünü destekler
-
 services:
   db:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}  # Varsayılan değer
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-mydb}                  # Varsayılan değer
-      MYSQL_USER: ${MYSQL_USER:-user}                          # Varsayılan değer
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-userpassword}          # Varsayılan değer
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - coolify-network
+      - dokploy-network
     restart: unless-stopped
-    healthcheck:  # DB'nin hazır olduğunu doğrulamak için
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
+    
   php:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - app-data:/var/www/html  # Coolify'de persistent volume önerilir
+      - ./app:/var/www/html
     depends_on:
-      db:
-        condition: service_healthy  # DB sağlıklı olana kadar başlatma
+      - db
     networks:
-      - coolify-network
+      - dokploy-network
     restart: unless-stopped
-    environment:
-      - PHP_MEMORY_LIMIT=256M  # PHP için örnek optimizasyon
-      - DB_HOST=db             # DB servisine bağlanmak için
 
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"   # Portları string olarak tanımla, Coolify'nin proxy'siyle uyumluluk için
-      - "443:443"
+      - 80
+      - 443
     volumes:
-      - app-data:/var/www/html  # Aynı volume'ü paylaş
+      - ./app:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
     networks:
-      - coolify-network
+      - dokploy-network
     restart: unless-stopped
 
 networks:
-  coolify-network:
-    name: coolify-network
-    external: true  # Coolify'nin varsayılan network'üyle eşleşiyor
+  dokploy-network:
+    external: true
+    driver: overlay
 
 volumes:
   db-data:
-    name: db-data  # Volume adını açıkça tanımla
-  app-data:
-    name: app-data  # PHP ve Nginx için ortak volume
