@@ -30,10 +30,6 @@ RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/custom.ini \
     && echo "display_errors=On" >> /usr/local/etc/php/conf.d/custom.ini
 
 # Kullanıcı izinlerini ayarla
-RUN chown -R 82:100 ./app \
-    && find ./app -type d -exec chmod 775 {} \; \
-    && find ./app -type f -exec chmod 664 {} \;
-
 RUN chown -R 82:100 /var/www/html \
     && find /var/www/html -type d -exec chmod 775 {} \; \
     && find /var/www/html -type f -exec chmod 664 {} \;
