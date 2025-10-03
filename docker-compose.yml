@@ -23,6 +23,11 @@ services:
     networks:
       - dokploy-network
     restart: unless-stopped
+    command: >
+      /bin/sh -c "chown -R 82:82 /var/www/html &&
+                  find /var/www/html -type d -exec chmod 775 {} \; &&
+                  find /var/www/html -type f -exec chmod 664 {} \; &&
+                  /entrypoint"
     
   php:
     build:
