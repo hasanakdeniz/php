@@ -29,7 +29,6 @@
             Merhaba Dünya, Merhaba <?php echo htmlspecialchars(explode('.', $_SERVER['HTTP_HOST'])[0]); ?>!
         </h1>
         <p class="text-lg md:text-xl text-gray-600 mb-6">
-            <a href="/info.php" class="link font-semibold">Buradan</a>, 
             <a href="https://dokploy.com/" target="_blank" rel="noopener noreferrer" class="link font-semibold">Dokploy</a>'da 
             deploy etmek üzere <?php echo htmlspecialchars(explode('.', $_SERVER['HTTP_HOST'])[0]); ?> için oluşturulmuş PHP versiyonunu inceleyebilirsin.
         </p>
