@@ -36,8 +36,9 @@ services:
     restart: unless-stopped
 
 networks:
-  coolify:
-    driver: local
+  dokploy-network:
+    driver: bridge
+    external: true
     
 volumes:
   db-data:
