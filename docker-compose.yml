@@ -20,8 +20,6 @@ services:
      - 2222:22
     environment:
      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:100:/var/www/html
-    depends_on:
-      - nginx
     networks:
       - dokploy-network
     restart: unless-stopped
