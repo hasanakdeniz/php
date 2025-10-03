@@ -37,6 +37,19 @@ services:
     networks:
       - dokploy-network
     restart: unless-stopped
+    labels:
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-web.rule=Host(`${DOMAIN_NAME_SS}`)
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-web.entrypoints=web
+      - traefik.http.services.${DOMAIN_NAME_SS_1}-web.loadbalancer.server.port=80
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-web.service=${DOMAIN_NAME_SS_1}-web
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-web.middlewares=redirect-to-https@file
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-websecure.rule=Host(`${DOMAIN_NAME_SS}`)
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-websecure.entrypoints=websecure
+      - traefik.http.services.${DOMAIN_NAME_SS_1}-websecure.loadbalancer.server.port=80
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-websecure.service=${DOMAIN_NAME_SS_1}-websecure
+      - traefik.http.routers.${DOMAIN_NAME_SS_1}-websecure.tls.certresolver=letsencrypt
+      - traefik.docker.network=dokploy-network
+      - traefik.enable=true
 
 networks:
   dokploy-network:
