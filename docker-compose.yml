@@ -11,6 +11,18 @@ services:
     networks:
       - dokploy-network
     restart: unless-stopped
+
+  sftp:
+    image: atmoz/sftp:latest
+    volumes:
+      - ./app:/var/www/html
+    ports:
+     - "2222:22"
+    environment:
+     - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:82:/var/www/html
+    networks:
+      - dokploy-network
+    restart: unless-stopped
     
   php:
     build:
@@ -20,6 +32,7 @@ services:
       - ./app:/var/www/html
     depends_on:
       - db
+      - sftp
     networks:
       - dokploy-network
     restart: unless-stopped
@@ -34,20 +47,6 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
-    networks:
-      - dokploy-network
-    restart: unless-stopped
-    
-  sftp:
-    image: atmoz/sftp:latest
-    volumes:
-      - ./app:/var/www/html
-    ports:
-     - "2222:22"
-    environment:
-     - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:82:/var/www/html
-    depends_on:
-     - php
     networks:
       - dokploy-network
     restart: unless-stopped
