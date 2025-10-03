@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merhaba <?php echo htmlspecialchars(explode('.', $_SERVER['HTTP_HOST'])[0]); ?></title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -38,7 +37,7 @@
             <a href="https://sudosu.tr/" target="_blank" rel="noopener noreferrer" class="link font-semibold">Sudosu!</a>
         </p>
         <p class="text-lg md:text-xl text-gray-600">
-            <?php echo htmlspecialchars("PHP :)"); ?>
+            <?php echo htmlspecialchars("PHP :) <a href='https://github.com/hasanakdeniz/php'>github</a>"); ?>
         </p>
     </div>
 </body>
