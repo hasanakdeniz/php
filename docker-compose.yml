@@ -43,7 +43,7 @@ services:
     volumes:
       - ./app:/var/www/html
     ports:
-      - 22
+      - "2222:22"
     environment:
       - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:1000:1000
     networks:
