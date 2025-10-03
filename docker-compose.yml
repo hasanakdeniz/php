@@ -28,12 +28,12 @@ services:
     image: atmoz/sftp:latest
     volumes:
       - ./app:/var/www/html
-    depends_on:
-      - php
     ports:
      - "2222:22"
     environment:
      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:82:/var/www/html
+    depends_on:
+      - php
     networks:
       - dokploy-network
     restart: unless-stopped
