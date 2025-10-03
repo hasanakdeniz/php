@@ -52,7 +52,6 @@ services:
 networks:
   coolify-network:
     name: coolify-network
-    driver: bridge
     external: true  # Coolify'nin varsayılan network'üyle eşleşiyor
 
 volumes:
