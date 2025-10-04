@@ -22,8 +22,7 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    environment:
-     - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:100:::upload
+    command: ${SFTP_USER}:${SFTP_PASSWORD}:1001
     networks:
       - dokploy-network
     restart: unless-stopped
