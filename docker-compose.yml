@@ -12,28 +12,7 @@ services:
       - dokploy-network
     restart: unless-stopped
 
-  sftp:
-    image: atmoz/sftp
-    volumes:
-      - data:/var/www/html
-    ports:
-     - 2222:22
-    command: ${SFTP_USER}:${SFTP_PASSWORD}:33:100:/var/www/html
-    networks:
-      - dokploy-network
-    restart: unless-stopped
-    
-  php:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - data:/var/www/html
-    depends_on:
-      - db
-    networks:
-      - dokploy-network
-    restart: unless-stopped
+  
 
   nginx:
     image: nginx:alpine
