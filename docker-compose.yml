@@ -18,8 +18,12 @@ services:
       - ./app:/var/www/html
     ports:
      - 2222:22
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
     environment:
-     - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82:100
+     - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:82
     networks:
       - dokploy-network
     restart: unless-stopped
