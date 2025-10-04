@@ -14,9 +14,6 @@ COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 # Composer'ın çalıştığını doğrula
 RUN composer --version
 
-# Çalışma dizini ayarla
-WORKDIR /var/www/html
-
 # Composer dependencies'i yükle (eğer composer.json varsa)
 RUN if [ -f /var/www/html/composer.json ]; then \
         composer install --no-dev --optimize-autoloader; \
