@@ -18,10 +18,6 @@ services:
       - ./app:/var/www/html
     ports:
      - 2222:22
-    ulimits:
-      nofile:
-        soft: 65536
-        hard: 65536
     command: ${SFTP_USER}:${SFTP_PASSWORD}:82:100:/var/www/html
     networks:
       - dokploy-network
