@@ -11,8 +11,18 @@ services:
     networks:
       - dokploy-network
     restart: unless-stopped
-
   
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - data:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - dokploy-network
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
