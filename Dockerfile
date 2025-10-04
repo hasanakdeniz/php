@@ -5,6 +5,7 @@ RUN apk add --no-cache \
     libpng-dev \
     libjpeg-turbo-dev \
     libzip-dev \
+    nano \
     && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-install pdo_mysql gd zip
 
