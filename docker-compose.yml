@@ -15,10 +15,10 @@ services:
   sftp:
     image: atmoz/sftp
     volumes:
-      - ./app:/var/www/html
+      - data:/var/www/html
     ports:
      - 2222:22
-    command: ${SFTP_USER}:${SFTP_PASSWORD}:82:100:/var/www/html:test
+    command: ${SFTP_USER}:${SFTP_PASSWORD}:82:100:/var/www/html
     networks:
       - dokploy-network
     restart: unless-stopped
@@ -28,7 +28,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./app:/var/www/html
+      - data:/var/www/html
     depends_on:
       - db
     networks:
@@ -41,7 +41,7 @@ services:
       - 80
       - 443
     volumes:
-      - ./app:/var/www/html
+      - data:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
@@ -56,3 +56,4 @@ networks:
 
 volumes:
   db-data:
+  data:
