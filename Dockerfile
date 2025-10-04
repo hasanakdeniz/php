@@ -19,7 +19,7 @@ RUN composer --version
 WORKDIR /var/www/html
 
 # Composer dependencies'i yükle (eğer composer.json varsa)
-RUN if [ -f app/composer.json ]; then \
+RUN if [ -f /var/www/html/composer.json ]; then \
         composer install --no-dev --optimize-autoloader; \
     else \
         echo "composer.json bulunamadı, bağımlılıklar yüklenmedi."; \
