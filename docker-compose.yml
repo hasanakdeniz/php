@@ -18,7 +18,7 @@ services:
       - data:/var/www/html
     ports:
      - 2222:22
-    command: ${SFTP_USER}:${SFTP_PASSWORD}:82:100:/var/www/html
+    command: ${SFTP_USER}:${SFTP_PASSWORD}:33:33:/var/www/html
     networks:
       - dokploy-network
     restart: unless-stopped
