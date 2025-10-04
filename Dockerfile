@@ -1,11 +1,10 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.3-fpm-alpine
 
 # Sistem bağımlılıklarını yükle
 RUN apk add --no-cache \
     libpng-dev \
     libjpeg-turbo-dev \
     libzip-dev \
-    nano \
     && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-install pdo_mysql gd zip
 
