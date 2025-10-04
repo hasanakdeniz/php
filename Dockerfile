@@ -24,10 +24,7 @@ RUN if [ -f /var/www/html/composer.json ]; then \
         echo "composer.json bulunamadı, bağımlılıklar yüklenmedi."; \
     fi
 
-# PHP konfigürasyon ayarlarını yap
-RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/custom.ini \
-    && echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "display_errors=On" >> /usr/local/etc/php/conf.d/custom.ini
+
 
 # Kullanıcı izinlerini ayarla
 RUN chown -R www-data:www-data /var/www/html \
