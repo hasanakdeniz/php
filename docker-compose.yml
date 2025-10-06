@@ -10,7 +10,7 @@ services:
       - data-db:/home
       - data-db:/var/lib/mysql
     networks:
-      - ${PROJECT_NAME}-network
+      - lemp-network
     restart: unless-stopped
   
   php:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     networks:
-      - ${PROJECT_NAME}-network
+      - lemp-network
     restart: unless-stopped
 
   nginx:
@@ -38,11 +38,11 @@ services:
     depends_on:
       - php
     networks:
-      - ${PROJECT_NAME}-network
+      - lemp-network
     restart: unless-stopped
 
 networks:
-  ${PROJECT_NAME}-network:
+  lemp-network:
     driver: bridge
 
 volumes:
