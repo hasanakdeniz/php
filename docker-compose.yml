@@ -36,9 +36,7 @@ services:
     restart: unless-stopped
   
   sftp:
-    build:
-      context: .
-      dockerfile: sftp.Dockerfile
+    image: atmoz/sftp
     volumes:
       - ./app:/home/sftpuser/ftp/upload
       - data-sftp:/home/sftpuser/.ssh
