@@ -7,8 +7,7 @@ services:
       MYSQL_USER: ${PROJECT_NAME}-${MYSQL_USER}
       MYSQL_PASSWORD: ${PROJECT_NAME}-${MYSQL_PASSWORD}
     volumes:
-      - ${PROJECT_NAME}-data-db:/${PROJECT_NAME}
-      - ${PROJECT_NAME}-db-data:/var/lib/mysql
+      - ${PROJECT_NAME}-data-db:/var/lib/mysql
     networks:
       - ${PROJECT_NAME}-network
     restart: unless-stopped
@@ -46,7 +45,6 @@ networks:
     driver: bridge
 
 volumes:
-  ${PROJECT_NAME}-db-data:
   ${PROJECT_NAME}-data-db:
   ${PROJECT_NAME}-data-php:
   ${PROJECT_NAME}-data-nginx:
