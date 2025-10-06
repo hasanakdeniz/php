@@ -38,6 +38,7 @@ services:
   sftp:
     image: atmoz/sftp
     volumes:
+      - data-sftp:/home
       - ./app:/home/sftpuser/ftp/upload
     ports:
       - 2222
@@ -49,3 +50,4 @@ volumes:
   data-db:
   data-php:
   data-nginx:
+  data-sftp:
