@@ -40,11 +40,7 @@ services:
     ports:
       - "2222:22"
     environment:
-      - PUID=83
-      - PGID=100
-      - TZ=Europe/Istanbul
-      - USERNAME=${SFTP_USER}
-      - PASSWORD=${SFTP_PASSWORD}
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100::upload
     command: sh -c "chown -R 83:100 /var/www/html && chmod -R 777 /var/www/html && /usr/sbin/sshd -D -e"
     restart: unless-stopped
     
