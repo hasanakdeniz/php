@@ -40,7 +40,6 @@ services:
 
 networks:
   dokploy-networkss:
-    external: true
     driver: bridge
 
 volumes:
