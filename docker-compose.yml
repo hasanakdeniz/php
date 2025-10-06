@@ -43,7 +43,8 @@ services:
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:1001:100:/home/sftpuser/ftp/upload
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100:/home/sftpuser/ftp/upload
+    command: sh -c "chown -R 83:100 /home/sftpuser/ftp/upload && chmod -R 777 /home/sftpuser/ftp/upload && /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"
     restart: unless-stopped
     
 volumes:
