@@ -33,14 +33,17 @@ services:
     restart: unless-stopped
   
   sftp:
-    image: atmoz/sftp
+    image: fauria/vsftpd
     volumes:
-      - ./app:/var/www/html
+      - ./app:/home/vsftpd
       - data-sftp:/data-sftp
     ports:
-      - "2222:22"
+      - "21:21"
+      - "20:20"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0::upload
+      - FTP_USER=${FTP_USER}
+      - FTP_PASS=${FTP_PASSWORD}
+      #- SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0::upload
     #command: sh -c "chown -R 83:100 /var/www/html && chmod -R 755 /var/www/html && /usr/sbin/sshd -D -e"
     restart: unless-stopped
     
