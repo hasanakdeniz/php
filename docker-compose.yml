@@ -2,10 +2,10 @@ services:
   db:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${PROJECT_NAME}-${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${PROJECT_NAME}-${MYSQL_DATABASE}
-      MYSQL_USER: ${PROJECT_NAME}-${MYSQL_USER}
-      MYSQL_PASSWORD: ${PROJECT_NAME}-${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - data-db:/home
       - data-db:/var/lib/mysql
@@ -34,7 +34,17 @@ services:
     depends_on:
       - php
     restart: unless-stopped
-
+  
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - ./app:/home/sftpuser/ftp/upload
+    ports:
+      - 2222:22
+    environment:
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}::upload
+    restart: unless-stopped
+    
 volumes:
   data-db:
   data-php:
