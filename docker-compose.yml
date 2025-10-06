@@ -33,7 +33,7 @@ services:
     restart: unless-stopped
   
   sftp:
-    image: linuxserver/sftp
+    image: atmoz/sftp
     volumes:
       - ./app:/var/www/html
       - data-sftp:/config
