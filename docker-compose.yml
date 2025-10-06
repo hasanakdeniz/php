@@ -43,7 +43,7 @@ services:
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100:/home/sftpuser/ftp/upload
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0:/home/sftpuser/ftp/upload
     restart: unless-stopped
     
 volumes:
