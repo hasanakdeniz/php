@@ -43,7 +43,7 @@ services:
     ports:
       - "2222:22"
     environment:
-      - ${SFTP_USER}:${SFTP_PASSWORD}::upload
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}::upload
     restart: unless-stopped
     
 volumes:
