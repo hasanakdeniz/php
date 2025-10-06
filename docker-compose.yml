@@ -38,7 +38,8 @@ services:
       - ./app:/home/vsftpd
       - data-sftp:/data-sftp
     ports:
-      - 21:21
+      - "21:21"
+      - "22:22"
     environment:
       - FTP_USER=${SFTP_USER}
       - FTP_PASS=${SFTP_PASSWORD}
