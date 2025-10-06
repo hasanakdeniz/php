@@ -42,7 +42,7 @@ services:
     volumes:
       - ./app:/home/sftpuser/ftp/upload
       - data-sftp:/home/sftpuser/.ssh
-      ./init.sh:/etc/cont-init.d/01-chown-app
+      - ./init.sh:/etc/cont-init.d/01-chown-app
     ports:
       - "2222:22"
     environment:
