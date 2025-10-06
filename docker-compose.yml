@@ -39,11 +39,11 @@ services:
     image: atmoz/sftp
     volumes:
       - ./app:/home/sftpuser/ftp/upload
-      - data-sftp:/home/sftpuser/.ssh 
+      - data-sftp:/home/sftpuser/.ssh
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}::upload
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:1001
     restart: unless-stopped
     
 volumes:
