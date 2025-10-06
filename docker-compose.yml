@@ -44,7 +44,7 @@ services:
       - "2222:22"
     environment:
       - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100:/home/sftpuser/ftp/upload
-    command: sh -c "chown -R 83:100 /home/sftpuser/ftp/upload && chmod -R 777 /home/sftpuser/ftp/upload && /bin/entrypoint.sh"
+    command: sh -c "chown -R 83:100 /home/sftpuser/ftp/upload && chmod -R 777 /home/sftpuser/ftp/upload && /usr/sbin/sshd -D -e"
     restart: unless-stopped
     
 volumes:
