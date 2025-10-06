@@ -38,8 +38,8 @@ services:
   sftp:
     image: atmoz/sftp
     volumes:
-      - data-sftp:/home
       - ./app:/home/sftpuser/ftp/upload
+      - data-sftp:/home
     ports:
       - "2222:22"
     environment:
