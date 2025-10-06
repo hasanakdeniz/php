@@ -7,8 +7,8 @@ services:
       MYSQL_USER: ${PROJECT_NAME}-${MYSQL_USER}
       MYSQL_PASSWORD: ${PROJECT_NAME}-${MYSQL_PASSWORD}
     volumes:
-      - ${PROJECT_NAME}-data-db:/home/${PROJECT_NAME}
-      - ${PROJECT_NAME}-data-db:/var/lib/mysql
+      - data-db:/home
+      - data-db:/var/lib/mysql
     networks:
       - ${PROJECT_NAME}-network
     restart: unless-stopped
@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ${PROJECT_NAME}-data-php:/home/${PROJECT_NAME}
+      - data-php:/home
       - ./app:/var/www/html
     depends_on:
       - db
@@ -32,7 +32,7 @@ services:
       - 80
       - 443
     volumes:
-      - ${PROJECT_NAME}-data-nginx:/home/${PROJECT_NAME}
+      - data-nginx:/home
       - ./app:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
@@ -46,6 +46,6 @@ networks:
     driver: bridge
 
 volumes:
-  ${PROJECT_NAME}-data-db:
-  ${PROJECT_NAME}-data-php:
-  ${PROJECT_NAME}-data-nginx:
+  data-db:
+  data-php:
+  data-nginx:
