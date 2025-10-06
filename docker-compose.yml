@@ -9,7 +9,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - php
+      - phpx
     restart: unless-stopped
   
   php:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     networks:
-      - php
+      - phpx
     restart: unless-stopped
 
   nginx:
@@ -35,11 +35,11 @@ services:
     depends_on:
       - php
     networks:
-      - php
+      - phpx
     restart: unless-stopped
 
 networks:
-  php:
+  phpx:
     driver: bridge
 
 volumes:
