@@ -2,14 +2,15 @@ services:
   db:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${PROJECT_NAME}-${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${PROJECT_NAME}-${MYSQL_DATABASE}
+      MYSQL_USER: ${PROJECT_NAME}-${MYSQL_USER}
+      MYSQL_PASSWORD: ${PROJECT_NAME}-${MYSQL_PASSWORD}
     volumes:
-      - db-data:/var/lib/mysql
+      - ${PROJECT_NAME}-data-db:/${PROJECT_NAME}
+      - ${PROJECT_NAME}-db-data:/var/lib/mysql
     networks:
-      - php
+      - ${PROJECT_NAME}-network
     restart: unless-stopped
   
   php:
@@ -17,11 +18,12 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
+      - ${PROJECT_NAME}-data-php:/${PROJECT_NAME}
       - ./app:/var/www/html
     depends_on:
       - db
     networks:
-      - php
+      - ${PROJECT_NAME}-network
     restart: unless-stopped
 
   nginx:
@@ -30,18 +32,21 @@ services:
       - 80
       - 443
     volumes:
+      - ${PROJECT_NAME}-data-nginx:/${PROJECT_NAME}
       - ./app:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
     networks:
-      - php
+      - ${PROJECT_NAME}-network
     restart: unless-stopped
 
 networks:
-  php:
+  ${PROJECT_NAME}-network:
     driver: bridge
 
 volumes:
-  db-data:
-  data:
+  ${PROJECT_NAME}-db-data:
+  ${PROJECT_NAME}-data-db:
+  ${PROJECT_NAME}-data-php:
+  ${PROJECT_NAME}-data-nginx:
