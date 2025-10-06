@@ -38,7 +38,7 @@ services:
   sftp:
     build:
       context: .
-      dockerfile: php.Dockerfile
+      dockerfile: sftp.Dockerfile
     volumes:
       - ./app:/home/sftpuser/ftp/upload
       - data-sftp:/home/sftpuser/.ssh
