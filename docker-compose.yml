@@ -43,6 +43,9 @@ services:
     environment:
       - FTP_USER=${SFTP_USER}
       - FTP_PASS=${SFTP_PASSWORD}
+      - PASV_ADDRESS=${SFTP_IP}  # Yerel için; sunucu IP'si ile değiştirin
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21110
       #- SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0::upload
     #command: sh -c "chown -R 83:100 /var/www/html && chmod -R 755 /var/www/html && /usr/sbin/sshd -D -e"
     restart: unless-stopped
