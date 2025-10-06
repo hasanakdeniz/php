@@ -33,14 +33,18 @@ services:
     restart: unless-stopped
   
   sftp:
-    image: atmoz/sftp
+    image: linuxserver/sftp
     volumes:
       - ./app:/var/www/html
-      - data-sftp:/home/sftpuser/.ssh
+      - data-sftp:/config
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100:/var/www/html
+      - PUID=83
+      - PGID=100
+      - TZ=Europe/Istanbul
+      - USERNAME=${SFTP_USER}
+      - PASSWORD=${SFTP_PASSWORD}
     command: sh -c "chown -R 83:100 /var/www/html && chmod -R 777 /var/www/html && /usr/sbin/sshd -D -e"
     restart: unless-stopped
     
