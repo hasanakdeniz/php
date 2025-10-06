@@ -36,12 +36,12 @@ services:
     image: atmoz/sftp
     volumes:
       - ./app:/var/www/html
-      - data-sftp:/config
+      - data-sftp:/data-sftp
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100::upload
-    command: sh -c "chown -R 83:100 /var/www/html && chmod -R 777 /var/www/html && /usr/sbin/sshd -D -e"
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0::upload
+    #command: sh -c "chown -R 83:100 /var/www/html && chmod -R 755 /var/www/html && /usr/sbin/sshd -D -e"
     restart: unless-stopped
     
 volumes:
