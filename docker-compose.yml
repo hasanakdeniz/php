@@ -40,8 +40,8 @@ services:
     ports:
       - 21:21
     environment:
-      - FTP_USER=${FTP_USER}
-      - FTP_PASS=${FTP_PASSWORD}
+      - FTP_USER=${SFTP_USER}
+      - FTP_PASS=${SFTP_PASSWORD}
       #- SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0::upload
     #command: sh -c "chown -R 83:100 /var/www/html && chmod -R 755 /var/www/html && /usr/sbin/sshd -D -e"
     restart: unless-stopped
