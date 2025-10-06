@@ -42,11 +42,10 @@ services:
     volumes:
       - ./app:/home/sftpuser/ftp/upload
       - data-sftp:/home/sftpuser/.ssh
-      - ./init.sh:/etc/cont-init.d/01-chown-app
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:1001:1001
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100
     restart: unless-stopped
     
 volumes:
