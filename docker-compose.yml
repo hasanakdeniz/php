@@ -9,7 +9,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - dokploy-networkx
+      - dokploy-network
     restart: unless-stopped
   
   php:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     networks:
-      - dokploy-networkx
+      - dokploy-network
     restart: unless-stopped
 
   nginx:
@@ -35,11 +35,11 @@ services:
     depends_on:
       - php
     networks:
-      - dokploy-networkx
+      - dokploy-network
     restart: unless-stopped
 
 networks:
-  dokploy-networkx:
+  dokploy-network:
     driver: bridge
 
 volumes:
