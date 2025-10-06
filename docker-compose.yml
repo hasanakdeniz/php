@@ -41,7 +41,7 @@ services:
       - data-sftp:/home
       - ./app:/home/sftpuser/ftp/upload
     ports:
-      - 2222
+      - "2222:22"
     environment:
       - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}::upload
     restart: unless-stopped
