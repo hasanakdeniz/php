@@ -40,7 +40,7 @@ services:
 
 networks:
   dokploy-network:
-  driver: bridge
+    driver: bridge
 
 volumes:
   db-data:
