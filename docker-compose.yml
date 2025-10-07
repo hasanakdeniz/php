@@ -33,10 +33,11 @@ services:
     restart: unless-stopped
 
   ftp:
-    image: fauria/vsftpd
+    build:
+      context: .
+      dockerfile: ftp.Dockerfile
     ports:
       - 21:21
-      - 20:20
       - 21100-21110:21100-21110
     volumes:
       - ./app:/home/vsftpd/ftpuser
