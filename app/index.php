@@ -1,18 +1,9 @@
-<?php
-// HTTP yanıt kodu 503 (Service Unavailable) olarak ayarlanır
-http_response_code(503);
-
-// Sayfanın yenilenmesini önlemek için önbellekleme başlıkları gönderilir
-header('Cache-Control: no-cache, no-store, must-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakımdayız - Maintenance</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,6 +19,20 @@ header('Expires: 0');
             --button-bg-dark: #3a3a3a;
         }
 
+        @keyframes lightBackgroundShift {
+            0% { background-color: #f8f8f8; }
+            33% { background-color: #e0f2f1; }
+            66% { background-color: #ffebee; }
+            100% { background-color: #f8f8f8; }
+        }
+
+        @keyframes darkBackgroundShift {
+            0% { background-color: #111111; }
+            33% { background-color: #1e1e1e; }
+            66% { background-color: #2a2a2a; }
+            100% { background-color: #111111; }
+        }
+
         body {
             display: flex;
             justify-content: center;
@@ -35,18 +40,18 @@ header('Expires: 0');
             min-height: 100vh;
             margin: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color-light);
             color: var(--text-color-light);
-            transition: background-color 0.8s, color 0.8s;
+            transition: color 0.8s;
             text-align: center;
             padding: 20px;
-            background-image: radial-gradient(at 100% 0%, var(--bg-color-light), var(--bg-color-light), #e8e8e8);
+            
+            animation: lightBackgroundShift 20s infinite alternate ease-in-out;
         }
 
         body.dark-theme {
-            background-color: var(--bg-color-dark);
             color: var(--text-color-dark);
-            background-image: radial-gradient(at 100% 0%, var(--bg-color-dark), var(--bg-color-dark), #333333);
+            
+            animation: darkBackgroundShift 20s infinite alternate ease-in-out;
         }
 
         .container {
@@ -65,12 +70,22 @@ header('Expires: 0');
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 20px 40px rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
 
         h1 {
             color: var(--accent-color);
             font-size: clamp(2rem, 7vw, 3.5rem); 
             font-weight: 800; 
             margin-bottom: 0.5rem;
+        }
+        
+        body.dark-theme h1 {
+            color: var(--text-color-dark);
         }
 
         .site-identifier {
@@ -79,6 +94,10 @@ header('Expires: 0');
             color: var(--accent-color); 
             margin-bottom: 1.5rem;
             display: block; 
+        }
+
+        body.dark-theme .site-identifier {
+            color: var(--text-color-dark);
         }
         
         p {
@@ -127,23 +146,6 @@ header('Expires: 0');
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
         }
 
-        .contact-info {
-            margin-top: 2rem; 
-            padding: 1rem 0;
-            border-top: 1px solid var(--button-bg-light);
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-        }
-
-        body.dark-theme .contact-info {
-            border-top: 1px solid var(--button-bg-dark);
-        }
-
-        .contact-info a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
         .loading-dots {
             margin-top: 2rem;
             display: flex;
@@ -152,8 +154,8 @@ header('Expires: 0');
 
         .loading-dots span {
             display: inline-block;
-            width: 10px;
-            height: 10px;
+            width: 8px; 
+            height: 8px;
             margin: 0 5px;
             border-radius: 50%;
             background-color: var(--accent-color);
@@ -193,7 +195,7 @@ header('Expires: 0');
         .modal-content {
             background-color: var(--card-bg-light);
             color: var(--text-color-light);
-            padding: 30px;
+            padding: 40px 30px 30px 30px; 
             border-radius: 10px;
             width: 90%;
             max-width: 700px;
@@ -220,6 +222,11 @@ header('Expires: 0');
             padding-bottom: 10px;
         }
 
+        body.dark-theme .modal-title {
+            color: var(--text-color-dark);
+            border-bottom: 1px solid var(--text-color-dark);
+        }
+
         .modal-body p {
             font-size: 1rem;
             line-height: 1.6;
@@ -232,9 +239,9 @@ header('Expires: 0');
 
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
             font-weight: 400;
             color: var(--accent-color);
             cursor: pointer;
@@ -242,8 +249,16 @@ header('Expires: 0');
             line-height: 1;
         }
 
+        body.dark-theme .close-btn {
+            color: var(--text-color-dark);
+        }
+
         .close-btn:hover {
             color: #888;
+        }
+        
+        body.dark-theme .close-btn:hover {
+            color: #ccc;
         }
     </style>
 </head>
@@ -259,10 +274,6 @@ header('Expires: 0');
             <button id="terms-btn" onclick="openModal('terms')"></button>
         </div>
         
-        <div class="contact-info">
-            <p id="contact-text">Sorularınız için: <a href="mailto:info@example.com">info@example.com</a></p>
-        </div>
-
         <div class="loading-dots">
             <span></span>
             <span></span>
@@ -284,7 +295,6 @@ header('Expires: 0');
             'tr': { 
                 baslik: 'Bakımdayız', 
                 mesaj: 'Hizmet kalitemizi artırmak için şu an planlı bakımdayız. Kısa süre içinde geri döneceğiz.',
-                contact: 'Sorularınız için: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'Gizlilik Politikası', 
                 termsBtn: 'Kullanıcı Sözleşmesi', 
                 privacy: { title: 'Gizlilik Politikası (Bakım)', text: 'Bu web sitesi, normalde kullanıcı deneyimini iyileştirmek için minimum düzeyde veri toplar. **Site şu anda bakımda olduğu için, hiçbir kullanıcı verisi işlenmemektedir ve çerez kullanılmamaktadır.** Bakım tamamlandığında, standart gizlilik politikamız yürürlüğe girecektir. Daha fazla bilgi için lütfen daha sonra tekrar kontrol edin.' },
@@ -293,7 +303,6 @@ header('Expires: 0');
             'en': { 
                 baslik: 'Under Maintenance', 
                 mesaj: 'We are currently undergoing scheduled maintenance to improve our service quality. We will be back shortly.',
-                contact: 'For inquiries: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'Privacy Policy', 
                 termsBtn: 'Terms of Service', 
                 privacy: { title: 'Privacy Policy (Maintenance)', text: 'This website normally collects minimal data to enhance user experience. **As the site is currently under maintenance, no user data is being processed, and no cookies are in use.** Our standard privacy policy will take effect once maintenance is complete. Please check back later for more details.' },
@@ -302,7 +311,6 @@ header('Expires: 0');
             'zh': { 
                 baslik: '系统维护中', 
                 mesaj: '我们正在进行计划性维护，以提高服务质量。我们将很快回来。',
-                contact: '如有疑问，请联系: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: '隐私政策', 
                 termsBtn: '服务条款', 
                 privacy: { title: '隐私政策 (维护)', text: '本网站通常收集最少量的数据以增强用户体验。**由于本网站目前正在维护中，因此不处理任何用户数据，也不使用任何 Cookie。** 维护完成后，我们的标准隐私政策将生效。请稍后查看更多详情。' },
@@ -311,7 +319,6 @@ header('Expires: 0');
             'es': { 
                 baslik: 'En Mantenimiento', 
                 mesaj: 'Actualmente estamos en mantenimiento programado para mejorar nuestro servicio. Volveremos en breve.',
-                contact: 'Para consultas: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'Política de Privacidad', 
                 termsBtn: 'Términos de Servicio', 
                 privacy: { title: 'Política de Privacidad (Mantenimiento)', text: 'Este sitio web normalmente recopila datos mínimos para mejorar la experiencia del usuario. **Dado que el sitio está actualmente en mantenimiento, no se están procesando datos del usuario ni se están utilizando cookies.** Nuestra política de privacidad estándar entrará en vigencia una vez que se complete el mantenimiento. Por favor, vuelva a consultar más tarde para obtener más detalles.' },
@@ -320,7 +327,6 @@ header('Expires: 0');
             'hi': { 
                 baslik: 'रखरखाव में', 
                 mesaj: 'हम अपनी सेवा की गुणवत्ता में सुधार के लिए योजनाबद्ध रखरखाव कर रहे हैं। हम जल्द ही वापस आएंगे।',
-                contact: 'पूछताछ के लिए: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'गोपनीयता नीति', 
                 termsBtn: 'सेवा की शर्तें', 
                 privacy: { title: 'गोपनीयता नीति (रखरखाव)', text: 'यह वेबसाइट सामान्यतः उपयोगकर्ता अनुभव को बेहतर बनाने के लिए न्यूनतम डेटा एकत्र करती है। **चूंकि साइट वर्तमान में रखरखाव के अधीन है, इसलिए कोई भी उपयोगकर्ता डेटा संसाधित नहीं किया जा रहा है, और कोई कुकीज़ उपयोग में नहीं हैं।** रखरखाव पूरा होने के बाद हमारी मानक गोपनीयता नीति लागू होगी। कृपया अधिक विवरण के लिए बाद में जांच करें।' },
@@ -329,7 +335,6 @@ header('Expires: 0');
             'ar': { 
                 baslik: 'تحت الصيانة', 
                 mesaj: 'نحن حاليًا نجري صيانة مجدولة لتحسين جودة خدماتنا. سنعود قريباً.',
-                contact: 'للاستفسارات: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'سياسة الخصوصية', 
                 termsBtn: 'شروط الخدمة', 
                 privacy: { title: 'سياسة الخصوصية (صيانة)', text: 'عادةً ما يجمع هذا الموقع الحد الأدنى من البيانات لتحسين تجربة المستخدم. **نظرًا لأن الموقع قيد الصيانة حاليًا، فلا يتم معالجة أي بيانات للمستخدمين ولا يتم استخدام أي ملفات تعريف ارتباط (كوكيز).** ستدخل سياسة الخصوصية القياسية الخاصة بنا حيز التنفيذ بمجرد اكتمال الصيانة. يرجى التحقق لاحقًا لمزيد من التفاصيل.' },
@@ -338,16 +343,14 @@ header('Expires: 0');
             'pt': { 
                 baslik: 'Em Manutenção', 
                 mesaj: 'Estamos em manutenção programada para melhorar a qualidade do nosso serviço. Voltaremos em breve.',
-                contact: 'Para perguntas: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'Política de Privacidade', 
                 termsBtn: 'Termos de Serviço', 
                 privacy: { title: 'Política de Privacidade (Manutenção)', text: 'Este website normalmente coleta dados mínimos para aprimorar a experiência do usuário. **Como o site está atualmente em manutenção, nenhum dado do usuário está sendo processado e nenhum cookie está em uso.** Nossa política de privacidade padrão entrará em vigor assim que a manutenção for concluída. Por favor, volte mais tarde para mais detalhes.' },
-                terms: { title: 'Termos de Serviço', text: 'Seu acesso e uso deste site estão condicionados à sua aceitação destes Termos de Serviço. **Devido à manutenção do site, os serviços estão temporariamente indisponíveis.** Ao continuar a usar o site quando ele estiver ativo, todos os usuários são considerados como tendo aceitado nossos termos legais. Por favor, revise os termos quando nossos serviços estiverem disponíveis.' }
+                terms: { title: 'Terms of Service', text: 'Seu acesso e uso deste site estão condicionados à sua aceitação destes Termos de Serviço. **Devido à manutenção do site, os serviços estão temporariamente indisponíveis.** Ao continuar a usar o site quando ele estiver ativo, todos os usuários são considerados como tendo aceitado nossos termos legais. Por favor, revise os termos quando nossos serviços estiverem disponíveis.' }
             },
             'ru': { 
                 baslik: 'На Обслуживании', 
                 mesaj: 'В настоящее время мы проводим плановое обслуживание для повышения качества нашего сервиса. Скоро вернемся.',
-                contact: 'По вопросам: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'Политика конфиденциальности', 
                 termsBtn: 'Условия использования', 
                 privacy: { title: 'Политика конфиденциальности (Обслуживание)', text: 'Этот веб-сайт обычно собирает минимальные данные для улучшения пользовательского опыта. **Поскольку сайт в настоящее время находится на обслуживании, никакие пользовательские данные не обрабатываются, и файлы cookie не используются.** Наша стандартная политика конфиденциальности вступит в силу после завершения обслуживания. Пожалуйста, зайдите позже для получения более подробной информации.' },
@@ -356,7 +359,6 @@ header('Expires: 0');
             'ja': { 
                 baslik: 'メンテナンス中', 
                 mesaj: 'サービス品質向上のため、現在計画的なメンテナンスを実施しております。まもなく再開いたします。',
-                contact: 'お問い合わせ: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'プライバシーポリシー', 
                 termsBtn: '利用規約', 
                 privacy: { title: 'プライバシーポリシー (メンテナンス)', text: 'このウェブサイトは、通常、ユーザーエクスペリエンスを向上させるために最小限のデータを収集します。**現在、サイトはメンテナンス中のため、ユーザーデータは処理されておらず、Cookieも使用されていません。** メンテナンス完了後、当社の標準プライバシーポリシーが適用されます。詳細については、後でご確認ください。' },
@@ -365,7 +367,6 @@ header('Expires: 0');
             'de': { 
                 baslik: 'Wartungsarbeiten', 
                 mesaj: 'Wir führen derzeit geplante Wartungsarbeiten durch, um unsere Servicequalität zu verbessern. Wir sind bald zurück.',
-                contact: 'Für Anfragen: <a href="mailto:info@example.com">info@example.com</a>',
                 privacyBtn: 'Datenschutzrichtlinie', 
                 termsBtn: 'Nutzungsbedingungen', 
                 privacy: { title: 'Datenschutzrichtlinie (Wartung)', text: 'Diese Website sammelt normalerweise minimale Daten, um die Benutzererfahrung zu verbessern. **Da sich die Website derzeit in Wartung befindet, werden keine Benutzerdaten verarbeitet und keine Cookies verwendet.** Unsere Standard-Datenschutzrichtlinie tritt in Kraft, sobald die Wartung abgeschlossen ist. Bitte prüfen Sie später erneut für weitere Details.' },
@@ -376,7 +377,7 @@ header('Expires: 0');
         const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
         const selectedLang = Object.keys(contentData).find(lang => userLang.startsWith(lang)) || 'en';
 
-        function getSiteNameFromUrl() {
+        function getSiteBaseName() {
             const hostname = window.location.hostname;
             let name = hostname.replace(/^www\./, '');
             
@@ -415,6 +416,7 @@ header('Expires: 0');
         }
 
         const mainContent = contentData[selectedLang];
+        const siteBaseName = getSiteBaseName(); // Site adını bir kez alıyoruz
         
         document.getElementById('baslik').textContent = mainContent.baslik;
         document.getElementById('mesaj').textContent = mainContent.mesaj;
@@ -422,11 +424,12 @@ header('Expires: 0');
         document.getElementById('privacy-btn').textContent = mainContent.privacyBtn;
         document.getElementById('terms-btn').textContent = mainContent.termsBtn;
         
-        document.getElementById('contact-text').innerHTML = mainContent.contact;
-
+        // Dinamik tarayıcı başlığını ayarlıyoruz: [Yerelleştirilmiş Başlık] - [SİTE ADI]
+        document.title = `${mainContent.baslik} - ${siteBaseName}`;
+        
         const siteNameElement = document.getElementById('site-name');
         if (siteNameElement) {
-            siteNameElement.textContent = getSiteNameFromUrl();
+            siteNameElement.textContent = siteBaseName; 
         }
 
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
