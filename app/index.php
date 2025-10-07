@@ -70,12 +70,15 @@ header('Expires: 0');
         }
 
         .site-name-style {
-            font-size: 2.5rem; 
+            /* Mobil taşıma önlemi */
+            font-size: clamp(1.2rem, 4vw, 1.8rem); 
             font-weight: 900;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #fff;
+            color: #000;
+            word-break: break-all;
+            overflow-wrap: break-word;
         }
 
         .maintenance-box {
@@ -219,7 +222,7 @@ header('Expires: 0');
                 'zh': ['系统维护中', '我们正在进行计划内的更新。我们将很快重新上线.'],
                 'es': ['En Mantenimiento', 'Estamos realizando actualizaciones programadas. Volveremos a estar en línea pronto.'],
                 'hi': ['रखरखाव में', 'हम निर्धारित अपडेट कर रहे हैं। हम जल्द ही वापस ऑनलाइन होंगे.'],
-                'ar': ['تحت الصيانة', 'نقوم بتحديثات مجدولة. سنعود للعمل قريباً.'],
+                'ar': ['تحت الصيانة', 'نقوم بتحديثات مجدولة. سنعود للعمل قريباً'],
                 'pt': ['Em Manutenção', 'Estamos realizando actualizaciones programadas. Voltaremos em breve.'],
                 'ru': ['На обслуживании', 'Мы проводим плановые обновления. Скоро вернемся в сеть.'],
                 'ja': ['メンテナンス中', '予定されたアップデートを実施しています. まもなく再開します.'],
