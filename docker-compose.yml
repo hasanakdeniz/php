@@ -35,8 +35,8 @@ services:
   ftp:
     image: fauria/vsftpd
     ports:
-      - 21
-      - 20
+      - 21:21
+      - 20:20
     volumes:
       - ./app:/home/vsftpd/app
     environment:
