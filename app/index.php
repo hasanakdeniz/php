@@ -70,12 +70,12 @@ header('Expires: 0');
         }
 
         .site-name-style {
-            font-size: 1.8rem; 
+            font-size: 2.5rem; 
             font-weight: 900;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #000;
+            color: #fff;
         }
 
         .maintenance-box {
