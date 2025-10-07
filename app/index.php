@@ -13,7 +13,7 @@ header('Expires: 0');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bakımdayız</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN kaldırıldı, tüm stiller buraya taşındı -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
@@ -35,6 +35,7 @@ header('Expires: 0');
                 --shadow-color: rgba(255, 255, 255, 0.05);
                 --secondary-text: #a0a0a0;
             }
+            .site-name-style { color: #e5e7eb; }
         }
 
         /* Simge dönüş animasyonu */
@@ -44,7 +45,7 @@ header('Expires: 0');
         }
 
         .icon-spin {
-            animation: rotate 8s linear infinite; /* Yavaş ve sürekli dönüş */
+            animation: rotate 8s linear infinite;
             display: inline-block;
         }
 
@@ -61,6 +62,21 @@ header('Expires: 0');
             padding: 2vw;
             box-sizing: border-box;
             overflow: hidden;
+        }
+        
+        /* Tailwind classes converted to semantic/utility classes */
+        .icon-style {
+            font-size: 3.75rem; /* text-6xl */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        
+        .site-name-style {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 800; /* font-extrabold */
+            margin-bottom: 0.5rem; /* mb-2 */
+            text-transform: uppercase; /* uppercase */
+            letter-spacing: 0.1em; /* tracking-widest */
+            color: #1f2937; /* text-gray-800 */
         }
 
         .maintenance-box {
@@ -87,11 +103,22 @@ header('Expires: 0');
             color: var(--secondary-text);
         }
 
-        .copyright-text {
+        .copyright-bar {
+            position: fixed;
+            bottom: 0;
+            margin-bottom: 1rem; /* mb-4 */
+            padding: 0.5rem; /* p-2 */
+            text-align: center; /* text-center */
+            width: 100%; /* w-full */
+
             font-size: clamp(0.75rem, 1.5vw, 0.9rem);
-            margin-top: 4vw;
             color: var(--secondary-text);
         }
+        .copyright-bar a {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
 
         .modal-overlay {
             display: none;
@@ -125,7 +152,13 @@ header('Expires: 0');
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .modal-content p, .modal-content h3 {
+        .popup-h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        .modal-content p {
             margin-bottom: 1rem;
             line-height: 1.6;
         }
@@ -149,8 +182,8 @@ header('Expires: 0');
 
     <!-- Ana Bakım Kutusu -->
     <div class="maintenance-box">
-        <div id="icon-container" class="text-6xl mb-4 icon-spin">⚙️</div>
-        <p id="site-name-top" class="text-lg font-extrabold mb-2 uppercase tracking-widest text-gray-800 dark:text-gray-200"></p>
+        <div id="icon-container" class="icon-style icon-spin">⚙️</div>
+        <p id="site-name-top" class="site-name-style"></p>
         <h1 id="main-title" class="title-text">Bakımdayız</h1>
         <p id="sub-text" class="subtitle-text">Planlı güncellemeler yapıyoruz. Kısa süre içinde tekrar yayında olacağız.</p>
     </div>
@@ -161,7 +194,7 @@ header('Expires: 0');
 
             <!-- Gizlilik Politikası İçeriği (Başlangıçta Gizli) -->
             <div id="privacy-content" style="display: none;">
-                <h3 class="text-2xl font-bold mb-4" id="pp-title">Gizlilik Politikası</h3>
+                <h3 class="popup-h3" id="pp-title">Gizlilik Politikası</h3>
                 <p id="pp-p1">Bu web sitesi şu anda bakım aşamasında olduğu için sizden hiçbir kişisel veri toplamamaktadır. Erişime açıldığında, güncel gizlilik politikamız geçerli olacaktır.</p>
                 <p id="pp-p2">Bakım durumu boyunca IP adresiniz, tarayıcı türünüz ve ziyaret saatiniz gibi standart sunucu günlükleri kaydedilebilir. Bu veriler yalnızca güvenlik ve site sağlığı analizi amacıyla kullanılır ve üçüncü taraflarla paylaşılmaz.</p>
                 <a onclick="closePopup()">- kapat -</a>
@@ -169,7 +202,7 @@ header('Expires: 0');
 
             <!-- Kullanıcı Sözleşmesi İçeriği (Başlangıçta Gizli) -->
             <div id="terms-content" style="display: none;">
-                <h3 class="text-2xl font-bold mb-4" id="tos-title">Kullanıcı Sözleşmesi</h3>
+                <h3 class="popup-h3" id="tos-title">Kullanıcı Sözleşmesi</h3>
                 <p id="tos-p1">Bu web sitesi şu anda bakım aşamasında olduğundan, bu süre zarfında herhangi bir hizmet veya işlevsellik sunulmamaktadır. Bu nedenle, aktif bir kullanıcı sözleşmesi bu süre için geçerli değildir.</p>
                 <p id="tos-p2">Site tekrar yayına girdiğinde, sitemizi kullanmaya devam etmeniz, o tarihte yayımlanan Kullanıcı Sözleşmesinin hüküm ve koşullarını kabul ettiğiniz anlamına gelecektir.</p>
                 <a onclick="closePopup()">- kapat -</a>
@@ -179,10 +212,10 @@ header('Expires: 0');
     </div>
     
     <!-- Copyright Kısmı (Sayfanın Altında) -->
-    <div class="copyright-text fixed bottom-0 mb-4 p-2 text-center w-full">
+    <div class="copyright-bar">
         &copy; <span id="current-year"></span> <span id="site-name-copyright">YourCompany</span>. 
-        <a class="underline cursor-pointer" onclick="openPopup('privacy-content')">Gizlilik Politikası</a> | 
-        <a class="underline cursor-pointer" onclick="openPopup('terms-content')">Kullanıcı Sözleşmesi</a>
+        <a onclick="openPopup('privacy-content')">Gizlilik Politikası</a> | 
+        <a onclick="openPopup('terms-content')">Kullanıcı Sözleşmesi</a>
     </div>
 
 
