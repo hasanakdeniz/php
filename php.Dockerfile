@@ -5,8 +5,8 @@ RUN apk add --no-cache \
     libpng-dev \
     libjpeg-turbo-dev \
     libzip-dev \
-    && usermod -u 33 php \
-    && groupmod -g 33 php \
+    && addgroup -g 33 php \
+    && adduser -u 33 -G php -s /bin/sh -D php \
     && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-install pdo_mysql gd zip \
     && rm -rf /var/cache/apk/*
