@@ -34,9 +34,9 @@ services:
 
   sftp:
     image: atmoz/sftp
-    command: lempuser:password
+    command: ${SFTP_USER}:${SFTP_PASSWORD}:${WWW_DATA_UID}:${WWW_DATA_GID}
     volumes:
-      - ./app:/home/lempuser/www
+      - ./app:/home/${SFTP_USER}/www
     ports:
       - "2222:22"
     restart: unless-stopped
