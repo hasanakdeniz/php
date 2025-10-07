@@ -53,7 +53,7 @@ header('Expires: 0');
             color: var(--text-color-light);
             transition: color 0.8s;
             text-align: center;
-            padding: 20px 20px 80px 20px;
+            padding: 20px 20px 60px 20px;
             position: relative;
             
             animation: lightBackgroundShift 20s infinite alternate ease-in-out;
@@ -144,17 +144,18 @@ header('Expires: 0');
         }
 
         .site-footer {
-            position: absolute;
+            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 10px 0;
+            padding: 5px 0; 
             text-align: center;
-            font-size: 0.65rem; 
+            font-size: 0.3rem; 
             color: var(--accent-color);
             opacity: 0.6;
             transition: color 0.6s, opacity 0.6s;
             line-height: 1.5;
+            z-index: 999;
         }
         
         body.dark-theme .site-footer {
@@ -420,7 +421,6 @@ header('Expires: 0');
         const siteBaseName = getSiteBaseName();
         const currentYear = new Date().getFullYear();
         
-        // Ana içerik güncellemeleri
         document.getElementById('baslik').textContent = mainContent.baslik;
         document.getElementById('mesaj').textContent = mainContent.mesaj;
         
@@ -430,19 +430,15 @@ header('Expires: 0');
         if (siteNameElement) {
             siteNameElement.textContent = siteBaseName; 
         }
-
-        // Footer güncellemeleri
         
         const privacyLink = `<a href="javascript:void(0);" onclick="openModal('privacy')">${mainContent.privacyBtn}</a>`;
         const termsLink = `<a href="javascript:void(0);" onclick="openModal('terms')">${mainContent.termsBtn}</a>`;
 
-        // İstenen format: © [YIL] - [SİTE ADI] | [GİZLİLİK] | [SÖZLEŞME]
         const copyrightText = `&copy; ${currentYear} - ${siteBaseName} | ${privacyLink} | ${termsLink}`;
 
         document.getElementById('copyright-text').innerHTML = copyrightText; 
 
 
-        // Karanlık/Açık Tema Algılama
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
         function applyTheme(e) {
             if (e.matches) {
@@ -458,4 +454,3 @@ header('Expires: 0');
 
 </body>
 </html>
-
