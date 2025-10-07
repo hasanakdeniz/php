@@ -44,7 +44,6 @@ services:
       FTP_USER: "${FTP_USER}"
       FTP_PASS: "${FTP_PASSWORD}"
       PASV_ENABLE: "YES"
-      PASV_ADDRESS: "${FTP_ADDRESS}"
       UMASK: "022"
       LOCAL_UMASK: "022"
       FILE_OPEN_MODE: "0644"
