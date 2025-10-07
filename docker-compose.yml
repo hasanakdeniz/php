@@ -23,8 +23,8 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - 80
-      - 443
+      - 80:80
+      - 443:443
     volumes:
       - ./app:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
@@ -32,25 +32,13 @@ services:
       - php
     restart: unless-stopped
 
-  ftp:
-    build:
-      context: .
-      dockerfile: ftp.Dockerfile
-    ports:
-      - 21:21
-      - 21100-21110:21100-21110
+  sftp:
+    image: atmoz/sftp
+    command: lempuser:password
     volumes:
-      - ./app:/home/vsftpd/ftpuser
-      #- ./vsftpd/vsftpd.conf:/etc/vsftpd/vsftpd.conf:ro
-    environment:
-      FTP_USER: "ftpuser"
-      FTP_PASS: "ftppassword"
-      PASV_ENABLE: "YES"
-      UMASK: "022"
-      LOCAL_UMASK: "022"
-      FTP_UID: "33" 
-      FTP_GID: "33"
-      VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
+      - ./app:/home/lempuser/www
+    ports:
+      - "2222:22"
     restart: unless-stopped
 
 volumes:
