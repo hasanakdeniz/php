@@ -37,11 +37,11 @@ services:
   sftp:
     image: atmoz/sftp:latest
     volumes:
-      - ./app:/home/${SFTP_USER}/app
+      - ./app:/var/www/html
     ports:
       - "2222:22"
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:33:33:app
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:33:33:/var/www/html
     restart: unless-stopped
 
 volumes:
