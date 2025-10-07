@@ -12,52 +12,161 @@ header('Expires: 0');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakımdayız</title>
+    <title>Bakım Çalışması - Maintenance</title>
     <style>
+        /* Genel Stil */
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
-            background-color: #f4f4f9; /* Açık arka plan */
-            color: #333; /* Koyu metin */
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background-color 0.4s, color 0.4s;
             text-align: center;
         }
-        .container {
+
+        .content {
             padding: 40px;
-            border-radius: 8px;
-            background-color: #fff; /* Beyaz içerik kutusu */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-            max-width: 600px;
-            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: background 0.4s, box-shadow 0.4s;
         }
+
+        .icon {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            color: #007bff; /* Açık ve Koyu modda aynı vurgu rengi */
+        }
+
         h1 {
-            color: #007bff; /* Mavi başlık rengi */
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
+
         p {
             font-size: 1.1em;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-top: 5px;
         }
-        .icon {
-            font-size: 3em;
-            color: #ffc107; /* Sarı uyarı rengi */
-            margin-bottom: 15px;
+        
+        /* --- AÇIK TEMA (Varsayılan) --- */
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
         }
-        /* İsteğe bağlı: Bir süre sonra otomatik yenileme (örneğin 1 saat sonra) */
-        /* meta http-equiv="refresh" content="3600" */
+
+        .content {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- KOYU TEMA (Tarayıcı tercihine göre) --- */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e1e1e; /* Koyu arka plan */
+                color: #f1f1f1; /* Açık yazı */
+            }
+
+            .content {
+                background: #2d2d30; /* Koyu içerik kutusu */
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+
+            .icon {
+                color: #66b3ff; /* Koyu mod için farklı bir mavi tonu */
+            }
+            h1 {
+                color: #f1f1f1;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🛠️</div>
-        <h1>Bakımdayız</h1>
-        <p>Şu anda sitemizde planlı bir bakım çalışması yapıyoruz. Daha iyi bir deneyim sunmak için çalışıyoruz.</p>
-        <p>Kısa süre içinde geri döneceğiz. Anlayışınız için teşekkür ederiz!</p>
-        </div>
+    <div class="content">
+        <div class="icon">🚧</div>
+
+        <h1 id="main-title"></h1>
+        <p id="main-message"></p>
+        <p id="sub-message"></p>
+    </div>
+
+    <script>
+        // --- 10 DİL İÇERİĞİ ---
+        const messages = {
+            'tr': {
+                title: "Güncelleniyoruz!",
+                msg1: "Sizlere daha iyi hizmet sunmak adına sitemizde kısa bir bakım çalışması yürütülmektedir.",
+                msg2: "Çok yakında, yeni ve geliştirilmiş özelliklerle geri döneceğiz."
+            },
+            'en': {
+                title: "Under Maintenance",
+                msg1: "We are performing a brief maintenance update to provide you with a better experience.",
+                msg2: "We will be back shortly with new and improved features."
+            },
+            'de': {
+                title: "Wartungsarbeiten",
+                msg1: "Wir führen gerade eine kurze Wartung durch, um Ihnen ein besseres Erlebnis zu bieten.",
+                msg2: "Wir sind bald mit neuen und verbesserten Funktionen zurück."
+            },
+            'fr': {
+                title: "Maintenance en cours",
+                msg1: "Nous effectuons une courte maintenance pour vous offrir une meilleure expérience.",
+                msg2: "Nous reviendrons bientôt avec de nouvelles fonctionnalités améliorées."
+            },
+            'es': {
+                title: "Mantenimiento",
+                msg1: "Estamos realizando una breve actualización de mantenimiento para brindarle una mejor experiencia.",
+                msg2: "Volveremos pronto con funciones nuevas y mejoradas."
+            },
+            'it': {
+                title: "Manutenzione in corso",
+                msg1: "Stiamo eseguendo un breve aggiornamento di manutenzione per offrirti un'esperienza migliore.",
+                msg2: "Torneremo presto con funzionalità nuove e migliorate."
+            },
+            'ru': {
+                title: "Ведутся работы",
+                msg1: "Мы проводим краткое техническое обслуживание для улучшения нашего сервиса.",
+                msg2: "Скоро мы вернемся с новыми и улучшенными функциями."
+            },
+            'pt': {
+                title: "Em Manutenção",
+                msg1: "Estamos realizando uma breve atualização de manutenção para lhe proporcionar uma experiência melhor.",
+                msg2: "Voltaremos em breve com recursos novos e aprimorados."
+            },
+            'ar': {
+                title: "تحت الصيانة",
+                msg1: "نقوم بإجراء تحديث صيانة قصير لتوفير تجربة أفضل لك.",
+                msg2: "سنعود قريباً بميزات جديدة ومحسّنة."
+            },
+            'zh': {
+                title: "系统维护中",
+                msg1: "我们正在进行短暂的维护更新，以提供更好的体验。",
+                msg2: "很快，我们将带着全新和改进的功能回来。"
+            }
+        };
+
+        // --- DİL ALGILAMA VE EKLEME ---
+        function loadContent() {
+            // Tarayıcının ana dilini veya ilk tercih edilen dilini al
+            const userLang = navigator.language.split('-')[0]; 
+            
+            // Eğer dil, tanımlı mesajlar içinde varsa onu kullan, yoksa Türkçe (tr) kullan
+            const lang = messages[userLang] ? userLang : 'tr';
+            const content = messages[lang];
+            
+            document.getElementById('main-title').textContent = content.title;
+            document.getElementById('main-message').textContent = content.msg1;
+            document.getElementById('sub-message').textContent = content.msg2;
+
+            // HTML dil etiketini güncelle
+            document.documentElement.lang = lang;
+        }
+
+        window.onload = loadContent;
+    </script>
 </body>
 </html>
