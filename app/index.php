@@ -12,15 +12,17 @@ header('Expires: 0');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tam Ekran Bakım</title>
+    <title>Tam Ekran Bakım (Kaymasız)</title>
     <style>
-        /* CSS Reset ve Tam Ekran Tanımları */
+        /* CSS Reset ve TAM EKRAN (Kaymayı Engelleme) */
         html, body {
             margin: 0;
             padding: 0;
-            /* Bu iki özellik, sayfanın tarayıcının TAM yüksekliğini almasını sağlar */
             height: 100%; 
-            min-height: 100%; 
+            width: 100%;
+            /* Kaymayı engellemek için en önemli komut */
+            overflow: hidden; 
+            box-sizing: border-box; 
         }
 
         body {
@@ -28,10 +30,11 @@ header('Expires: 0');
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Sayfa içeriği az olsa bile, kapsayıcı tam yüksekliği kullanır */
+            /* Tarayıcı yüksekliğini kullan */
             min-height: 100vh; 
             transition: background-color 0.4s, color 0.4s;
             text-align: center;
+            
             /* Mobil kenar boşluğu */
             padding: 0 20px; 
             box-sizing: border-box; 
@@ -108,7 +111,7 @@ header('Expires: 0');
     </div>
 
     <script>
-        // ... (Dil kodları aynı kaldı, burada kısaltılmıştır) ...
+        // ... (Dil kodları aynı kaldı) ...
         const messages = {
             'tr': { title: "Güncelleniyoruz!", msg1: "Sizlere daha iyi hizmet sunmak adına sitemizde kısa bir bakım çalışması yürütülmektedir.", msg2: "Çok yakında, yeni ve geliştirilmiş özelliklerle geri döneceğiz." },
             'en': { title: "Under Maintenance", msg1: "We are performing a brief maintenance update to provide you with a better experience.", msg2: "We will be back shortly with new and improved features." },
