@@ -34,9 +34,6 @@ header('Expires: 0');
                 --shadow-color: rgba(255, 255, 255, 0.05);
                 --secondary-text: #a0a0a0;
             }
-            .site-name-style {
-                color: var(--text-color); 
-            }
         }
 
         @keyframes rotate {
@@ -76,7 +73,7 @@ header('Expires: 0');
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #000;
+            color: var(--text-color); /* Tema rengini kullan */
             word-break: break-all;
             overflow-wrap: break-word;
         }
@@ -222,7 +219,7 @@ header('Expires: 0');
                 'zh': ['系统维护中', '我们正在进行计划内的更新。我们将很快重新上线.'],
                 'es': ['En Mantenimiento', 'Estamos realizando actualizaciones programadas. Volveremos a estar en línea pronto.'],
                 'hi': ['रखरखाव में', 'हम निर्धारित अपडेट कर रहे हैं। हम जल्द ही वापस ऑनलाइन होंगे.'],
-                'ar': ['تحت الصيانة', 'نقوم بتحديثات مجدولة. سنعود للعمل قريباً'],
+                'ar': ['تحت الصيانة', 'نقوم بتحديثات مجدولة. سنعود للعمل قariqاً'],
                 'pt': ['Em Manutenção', 'Estamos realizando actualizaciones programadas. Voltaremos em breve.'],
                 'ru': ['На обслуживании', 'Мы проводим плановые обновления. Скоро вернемся в сеть.'],
                 'ja': ['メンテナンス中', '予定されたアップデートを実施しています. まもなく再開します.'],
