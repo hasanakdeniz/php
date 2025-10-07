@@ -50,7 +50,7 @@ services:
       FTP_UID: "33" 
       FTP_GID: "33"
       VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
-      file_open_mode: "0644"
+      FILE_OPEN_MODE: "0644"
     restart: unless-stopped
 
 volumes:
