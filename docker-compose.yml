@@ -1,3 +1,5 @@
+version: '3.6'
+
 services:
   db:
     image: mariadb:latest
@@ -22,9 +24,10 @@ services:
 
   nginx:
     image: nginx:alpine
+    # 80 ve 443 portlarını host makineye map'liyoruz
     ports:
-      - 80
-      - 443
+      - "80:80"
+      - "443:443"
     volumes:
       - ./app:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
@@ -32,26 +35,33 @@ services:
       - php
     restart: unless-stopped
   
-  sftp:
+  # VSFTPD SERVİSİ: FTP ile dosya yönetimi için
+  vsftpd:
     image: fauria/vsftpd
-    volumes:
-      - ./app:/home/vsftpd
-      - data-sftp:/data-sftp
-    ports:
-      - "21:21"
-      - "21100-21110:21100-21110"
+    container_name: ftp_server
+    restart: always
     environment:
+      # FTP Giriş Bilgileri (Bu değerleri .env dosyasında saklayın!)
       - FTP_USER=${SFTP_USER}
       - FTP_PASS=${SFTP_PASSWORD}
+      # PASİF MOD AYARLARI (FTP bağlantı sorunlarını çözmek için KRİTİKTİR)
       - PASV_ENABLE=YES
-      - PASV_ADDRESS=${SFTP_IP}  # Yerel için; sunucu IP'si ile değiştirin
+      # DİKKAT: Buraya sunucunuzun GENEL IP adresini veya alan adını yazın.
+      - PASV_ADDRESS=${SFTP_IP}
       - PASV_MIN_PORT=21100
       - PASV_MAX_PORT=21110
-      - VSFTPD_WRITE_ENABLE=YES
-      #- SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:0:0::upload
-    #command: sh -c "chown -R 83:100 /var/www/html && chmod -R 755 /var/www/html && /usr/sbin/sshd -D -e"
-    restart: unless-stopped
-    
+    ports:
+      # FTP Kontrol Portu
+      - "21:21"
+      # FTP Veri Portu (Aktif Mod)
+      - "20:20"
+      # Pasif Port Aralığı (Güvenlik duvarında bu aralığı açmayı unutmayın)
+      - "21100-21110:21100-21110"
+    volumes:
+      # Web dosyalarına erişim için, host'taki `./app` klasörünü FTP ana dizinine (`/home/vsftpd`) bağlıyoruz.
+      - ./app:/home/vsftpd 
+      # İsteğe bağlı: Log dosyalarını host'ta tutmak için
+      - ./ftp_logs:/var/log/vsftpd
+
 volumes:
   data-db:
-  data-sftp:
