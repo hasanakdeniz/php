@@ -39,12 +39,12 @@ services:
       - 20:20
       - 21100-21110:21100-21110
     volumes:
-      - ./app:/var/www/html
+      - ./app:/vsftpd/ftpuser
     environment:
       FTP_USER: "${FTP_USER}"
       FTP_PASS: "${FTP_PASSWORD}"
       PASV_ENABLE: "YES"      
-      VIRTUAL_ROOT: "/var/www/html"
+      VIRTUAL_ROOT: "/vsftpd/ftpuser"
       UMASK: "022"
       LOCAL_UMASK: "022"
       FILE_OPEN_MODE: "0644"
