@@ -35,7 +35,7 @@ header('Expires: 0');
                 --secondary-text: #a0a0a0;
             }
             .site-name-style {
-                color: #fff; 
+                color: var(--text-color); 
             }
         }
 
@@ -70,7 +70,7 @@ header('Expires: 0');
         }
 
         .site-name-style {
-            font-size: 1.125rem; 
+            font-size: 1.5rem; 
             font-weight: 800;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
