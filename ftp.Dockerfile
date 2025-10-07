@@ -1,8 +1,9 @@
-FROM alpine/git:latest as base
+FROM alpine:latest 
+
 RUN apk update && apk add vsftpd
 
-RUN mkdir -p /home/ftpuser/ \
-    && adduser -D -h /home/ftpuser -s /bin/sh ftpuser \
+RUN addgroup -g 33 ftpuser \
+    && adduser -D -u 33 -G ftpuser -h /home/ftpuser -s /bin/sh ftpuser \
     && echo "ftpuser:ftppassword" | chpasswd 
 
 COPY vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf
