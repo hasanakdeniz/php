@@ -34,9 +34,9 @@ services:
 
   sftp:
     image: atmoz/sftp
-    command: hasan:hasan:33:33
+    command: hasan:hasan:83:100
     volumes:
-      - ./app:/home/${SFTP_USER}/www
+      - ./app:/home/hasan/www
     ports:
       - "2222:22"
     restart: unless-stopped
