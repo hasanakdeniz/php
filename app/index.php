@@ -8,448 +8,300 @@ header('Pragma: no-cache');
 header('Expires: 0');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Bakımdayız</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
         :root {
-            --bg-color-light: #f8f8f8;
-            --text-color-light: #111111;
-            --accent-color: #444444;
-            
-            --bg-color-dark: #111111;
-            --text-color-dark: #f8f8f8;
-            --card-bg-light: #ffffff;
-            --card-bg-dark: #222222;
-            --button-bg-light: #e0e0e0;
-            --button-bg-dark: #3a3a3a;
+            --bg-start: #ffffff;
+            --bg-end: #f0f0f0;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --secondary-text: #777;
         }
 
-        @keyframes lightBackgroundShift {
-            0% { background-color: #f8f8f8; }
-            33% { background-color: #e0f2f1; }
-            66% { background-color: #ffebee; }
-            100% { background-color: #f8f8f8; }
-        }
-
-        @keyframes darkBackgroundShift {
-            0% { background-color: #111111; }
-            33% { background-color: #1e1e1e; }
-            66% { background-color: #2a2a2a; }
-            100% { background-color: #111111; }
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-color-light);
-            transition: color 0.8s;
-            text-align: center;
-            padding: 20px 20px 60px 20px;
-            position: relative;
-            
-            animation: lightBackgroundShift 20s infinite alternate ease-in-out;
-        }
-
-        body.dark-theme {
-            color: var(--text-color-dark);
-            
-            animation: darkBackgroundShift 20s infinite alternate ease-in-out;
-        }
-
-        .container {
-            width: 90%; 
-            max-width: 600px;
-            padding: 4rem 2rem; 
-            border-radius: 20px; 
-            background-color: var(--card-bg-light); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 20px 40px rgba(0, 0, 0, 0.15); 
-            transition: box-shadow 0.6s, background-color 0.6s;
-            border: 1px solid rgba(0, 0, 0, 0.05); 
-        }
-        
-        body.dark-theme .container {
-            background-color: var(--card-bg-dark); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 20px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 3rem 1.5rem;
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-start: #1c1c1c;
+                --bg-end: #0f0f0f;
+                --text-color: #e5e5e5;
+                --card-bg: #2d2d2d;
+                --shadow-color: rgba(255, 255, 255, 0.05);
+                --secondary-text: #a0a0a0;
             }
         }
 
-        h1 {
-            color: var(--accent-color);
-            font-size: clamp(2rem, 7vw, 3.5rem); 
-            font-weight: 800; 
-            margin-bottom: 0.5rem;
-        }
-        
-        body.dark-theme h1 {
-            color: var(--text-color-dark);
+        /* Simge dönüş animasyonu */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .site-identifier {
-            font-weight: 600; 
-            font-size: clamp(1.2rem, 3.5vw, 1.8rem); 
-            color: var(--accent-color); 
-            margin-bottom: 1.5rem;
-            display: block; 
+        .icon-spin {
+            animation: rotate 8s linear infinite; /* Yavaş ve sürekli dönüş */
+            display: inline-block;
         }
 
-        body.dark-theme .site-identifier {
-            color: var(--text-color-dark);
-        }
-        
-        p {
-            font-size: clamp(1.1rem, 3.5vw, 1.3rem);
-            line-height: 1.7;
-            font-weight: 400;
-        }
-        
-        .loading-dots {
-            margin-top: 2rem;
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center;
+            margin: 0;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            color: var(--text-color);
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+            padding: 2vw;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        .loading-dots span {
-            display: inline-block;
-            width: 8px; 
-            height: 8px;
-            margin: 0 5px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            opacity: 0.3;
-            animation: pulse 1.5s infinite ease-in-out both;
-        }
-
-        .loading-dots span:nth-child(1) { animation-delay: 0s; }
-        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes pulse {
-            0%, 80%, 100% { opacity: 0.3; transform: scale(0.9); }
-            40% { opacity: 1; transform: scale(1.1); }
-        }
-
-        .site-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 5px 0; 
+        .maintenance-box {
+            width: 90vw;
+            max-width: 550px;
+            padding: 3vw;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
             text-align: center;
-            font-size: 0.3rem; 
-            color: var(--accent-color);
-            opacity: 0.6;
-            transition: color 0.6s, opacity 0.6s;
-            line-height: 1.5;
-            z-index: 999;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: all 0.5s ease;
+            box-sizing: border-box;
         }
-        
-        body.dark-theme .site-footer {
-            color: var(--text-color-dark);
-            opacity: 0.5;
+
+        .title-text {
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            line-height: 1.1;
+            font-weight: 800;
         }
-        
-        .site-footer a {
-            color: inherit;
-            text-decoration: none;
-            transition: text-decoration 0.3s;
-            font-weight: 600;
-            margin: 0 5px;
+
+        .subtitle-text {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            margin-top: clamp(1rem, 2vw, 1.5rem);
+            color: var(--secondary-text);
         }
-        
-        .site-footer a:hover {
-            text-decoration: underline;
+
+        .copyright-text {
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            margin-top: 4vw;
+            color: var(--secondary-text);
         }
 
         .modal-overlay {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
-            display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.3s;
-            opacity: 0;
-        }
-        
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
         }
 
         .modal-content {
-            background-color: var(--card-bg-light);
-            color: var(--text-color-light);
-            padding: 40px 30px 30px 30px; 
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             width: 90%;
-            max-width: 700px;
-            max-height: 80vh;
+            max-width: 600px;
+            max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: left;
-            transition: background-color 0.8s, color 0.8s;
-        }
-        
-        body.dark-theme .modal-content {
-            background-color: var(--card-bg-dark);
-            color: var(--text-color-dark);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-out;
+            color: var(--text-color);
         }
 
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--accent-color);
-            padding-bottom: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        body.dark-theme .modal-title {
-            color: var(--text-color-dark);
-            border-bottom: 1px solid var(--text-color-dark);
-        }
-
-        .modal-body p {
-            font-size: 1rem;
+        .modal-content p, .modal-content h3 {
+            margin-bottom: 1rem;
             line-height: 1.6;
-            margin-bottom: 15px;
         }
 
-        .modal-body strong {
-            font-weight: 700;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--accent-color);
+        .modal-content a {
             cursor: pointer;
-            transition: color 0.2s;
-            line-height: 1;
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
         }
 
-        body.dark-theme .close-btn {
-            color: var(--text-color-dark);
-        }
-
-        .close-btn:hover {
-            color: #888;
-        }
-        
-        body.dark-theme .close-btn:hover {
-            color: #ccc;
+        .modal-content a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 id="baslik"></h1>
-        <div id="site-name" class="site-identifier">SITEADI</div>
-        <p id="mesaj"></p>
-        
-        <div class="loading-dots">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <!-- Ana Bakım Kutusu -->
+    <div class="maintenance-box">
+        <div id="icon-container" class="text-6xl mb-4 icon-spin">⚙️</div>
+        <p id="site-name-top" class="text-lg font-extrabold mb-2 uppercase tracking-widest text-gray-800 dark:text-gray-200"></p>
+        <h1 id="main-title" class="title-text">Bakımdayız</h1>
+        <p id="sub-text" class="subtitle-text">Planlı güncellemeler yapıyoruz. Kısa süre içinde tekrar yayında olacağız.</p>
     </div>
 
-    <footer class="site-footer">
-        <p id="copyright-text"></p>
-    </footer>
+    <!-- Pop-up Modal Kaplaması -->
+    <div id="popup-overlay" class="modal-overlay">
+        <div id="popup-modal" class="modal-content">
 
-    <div id="policy-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation();">
-            <span class="close-btn" onclick="closeModal(event)">&times;</span>
-            <h2 id="modal-title" class="modal-title"></h2>
-            <div id="policy-content" class="modal-body">
+            <!-- Gizlilik Politikası İçeriği (Başlangıçta Gizli) -->
+            <div id="privacy-content" style="display: none;">
+                <h3 class="text-2xl font-bold mb-4" id="pp-title">Gizlilik Politikası</h3>
+                <p id="pp-p1">Bu web sitesi şu anda bakım aşamasında olduğu için sizden hiçbir kişisel veri toplamamaktadır. Erişime açıldığında, güncel gizlilik politikamız geçerli olacaktır.</p>
+                <p id="pp-p2">Bakım durumu boyunca IP adresiniz, tarayıcı türünüz ve ziyaret saatiniz gibi standart sunucu günlükleri kaydedilebilir. Bu veriler yalnızca güvenlik ve site sağlığı analizi amacıyla kullanılır ve üçüncü taraflarla paylaşılmaz.</p>
+                <a onclick="closePopup()">- kapat -</a>
             </div>
+
+            <!-- Kullanıcı Sözleşmesi İçeriği (Başlangıçta Gizli) -->
+            <div id="terms-content" style="display: none;">
+                <h3 class="text-2xl font-bold mb-4" id="tos-title">Kullanıcı Sözleşmesi</h3>
+                <p id="tos-p1">Bu web sitesi şu anda bakım aşamasında olduğundan, bu süre zarfında herhangi bir hizmet veya işlevsellik sunulmamaktadır. Bu nedenle, aktif bir kullanıcı sözleşmesi bu süre için geçerli değildir.</p>
+                <p id="tos-p2">Site tekrar yayına girdiğinde, sitemizi kullanmaya devam etmeniz, o tarihte yayımlanan Kullanıcı Sözleşmesinin hüküm ve koşullarını kabul ettiğiniz anlamına gelecektir.</p>
+                <a onclick="closePopup()">- kapat -</a>
+            </div>
+            
         </div>
     </div>
+    
+    <!-- Copyright Kısmı (Sayfanın Altında) -->
+    <div class="copyright-text fixed bottom-0 mb-4 p-2 text-center w-full">
+        &copy; <span id="current-year"></span> <span id="site-name-copyright">YourCompany</span>. 
+        <a class="underline cursor-pointer" onclick="openPopup('privacy-content')">Gizlilik Politikası</a> | 
+        <a class="underline cursor-pointer" onclick="openPopup('terms-content')">Kullanıcı Sözleşmesi</a>
+    </div>
+
 
     <script>
-        const contentData = {
-            'tr': { 
-                baslik: 'Bakımdayız', 
-                mesaj: 'Hizmet kalitemizi artırmak için şu an planlı bakımdayız. Kısa süre içinde geri döneceğiz.',
-                privacyBtn: 'Gizlilik Politikası', 
-                termsBtn: 'Kullanıcı Sözleşmesi', 
-                privacy: { title: 'Gizlilik Politikası (Bakım)', text: 'Bu web sitesi, normalde kullanıcı deneyimini iyileştirmek için minimum düzeyde veri toplar. **Site şu anda bakımda olduğu için, hiçbir kullanıcı verisi işlenmemektedir ve çerez kullanılmamaktadır.** Bakım tamamlandığında, standart gizlilik politikamız yürürlüğe girecektir. Daha fazla bilgi için lütfen daha sonra tekrar kontrol edin.' },
-                terms: { title: 'Kullanıcı Sözleşmesi (Şartlar)', text: 'Bu siteye erişiminiz ve kullanımı, bu kullanıcı sözleşmesine tabidir. **Sitenin bakımda olması nedeniyle hizmetler geçici olarak kullanılamamaktadır.** Sitenin canlı hale gelmesiyle birlikte, tüm kullanıcılar bu şartları kabul etmiş sayılır. Lütfen hizmetlerimiz kullanıma açıldığında şartları inceleyiniz.' }
-            },
-            'en': { 
-                baslik: 'Under Maintenance', 
-                mesaj: 'We are currently undergoing scheduled maintenance to improve our service quality. We will be back shortly.',
-                privacyBtn: 'Privacy Policy', 
-                termsBtn: 'Terms of Service', 
-                privacy: { title: 'Privacy Policy (Maintenance)', text: 'This website normally collects minimal data to enhance user experience. **As the site is currently under maintenance, no user data is being processed, and no cookies are in use.** Our standard privacy policy will take effect once maintenance is complete. Please check back later for more details.' },
-                terms: { title: 'Terms of Service', text: 'Your access to and use of this site is conditioned upon your acceptance of these Terms of Service. **Due to site maintenance, services are temporarily unavailable.** By continuing to use the site once it is live, all users are considered to have accepted our legal terms. Please review the terms when our services become available.' }
-            },
-            'zh': { 
-                baslik: '系统维护中', 
-                mesaj: '我们正在进行计划性维护，以提高服务质量。我们将很快回来。',
-                privacyBtn: '隐私政策', 
-                termsBtn: '服务条款', 
-                privacy: { title: '隐私政策 (维护)', text: '本网站通常收集最少量的数据以增强用户体验。**由于本网站目前正在维护中，因此不处理任何用户数据，也不使用任何 Cookie。** 维护完成后，我们的标准隐私政策将生效。请稍后查看更多详情。' },
-                terms: { title: '服务条款', text: '您对本网站的访问和使用取决于您对本服务条款的接受。**由于网站维护，服务暂时不可用。** 一旦网站恢复正常运行，所有用户将被视为已接受我们的法律条款。请在我们的服务恢复可用时查看条款。' }
-            },
-            'es': { 
-                baslik: 'En Mantenimiento', 
-                mesaj: 'Actualmente estamos en mantenimiento programado para mejorar nuestro servicio. Volveremos en breve.',
-                privacyBtn: 'Política de Privacidad', 
-                termsBtn: 'Términos de Servicio', 
-                privacy: { title: 'Política de Privacidad (Mantenimiento)', text: 'Este sitio web normalmente recopila datos mínimos para mejorar la experiencia del usuario. **Dado que el sitio está actualmente en mantenimiento, no se están procesando datos del usuario ni se están utilizando cookies.** Nuestra política de privacidad estándar entrará en vigencia una vez que se complete el mantenimiento. Por favor, vuelva a consultar más tarde para obtener más detalles.' },
-                terms: { title: 'Términos de Servicio', text: 'Su acceso y uso de este sitio están condicionados a su aceptación de estos Términos de Servicio. **Debido al mantenimiento del sitio, los servicios no están disponibles temporalmente.** Al continuar utilizando el sitio una vez que esté activo, se considera que todos los usuarios han aceptado nuestros términos legales. Revise los términos cuando nuestros servicios estén disponibles.' }
-            },
-            'hi': { 
-                baslik: 'रखरखाव में', 
-                mesaj: 'हम अपनी सेवा की गुणवत्ता में सुधार के लिए योजनाबद्ध रखरखाव कर रहे हैं। हम जल्द ही वापस आएंगे।',
-                privacyBtn: 'गोपनीयता नीति', 
-                termsBtn: 'सेवा की शर्तें', 
-                privacy: { title: 'गोपनीयता नीति (रखरखाव)', text: 'यह वेबसाइट सामान्यतः उपयोगकर्ता अनुभव को बेहतर बनाने के लिए न्यूनतम डेटा एकत्र करती है। **चूंकि साइट वर्तमान में रखरखाव के अधीन है, इसलिए कोई भी उपयोगकर्ता डेटा संसाधित नहीं किया जा रहा है, और कोई कुकीज़ उपयोग में नहीं हैं।** रखरखाव पूरा होने के बाद हमारी मानक गोपनीयता नीति लागू होगी। कृपया अधिक विवरण के लिए बाद में जांच करें।' },
-                terms: { title: 'सेवा की शर्तें', text: 'इस साइट तक आपकी पहुंच और उपयोग इन सेवा की शर्तों की स्वीकृति पर निर्भर करता है। **साइट के रखरखाव के कारण, सेवाएं अस्थायी रूप से अनुपलब्ध हैं।** साइट के लाइव होने के बाद इसका उपयोग जारी रखने पर, सभी उपयोगकर्ताओं को हमारी कानूनी शर्तों को स्वीकार करने वाला माना जाएगा। कृपया हमारी सेवाएं उपलब्ध होने पर शर्तों की समीक्षा करें।' }
-            },
-            'ar': { 
-                baslik: 'تحت الصيانة', 
-                mesaj: 'نحن حاليًا نجري صيانة مجدولة لتحسين جودة خدماتنا. سنعود قريباً.',
-                privacyBtn: 'سياسة الخصوصية', 
-                termsBtn: 'شروط الخدمة', 
-                privacy: { title: 'سياسة الخصوصية (صيانة)', text: 'عادةً ما يجمع هذا الموقع الحد الأدنى من البيانات لتحسين تجربة المستخدم. **نظرًا لأن الموقع قيد الصيانة حاليًا، فلا يتم معالجة أي بيانات للمستخدمين ولا يتم استخدام أي ملفات تعريف ارتباط (كوكيز).** ستدخل سياسة الخصوصية القياسية الخاصة بنا حيز التنفيذ بمجرد اكتمال الصيانة. يرجى التحقق لاحقًا لمزيد من التفاصيل.' },
-                terms: { title: 'شروط الخدمة', text: 'يخضع وصولك واستخدامك لهذا الموقع لقبولك شروط الخدمة هذه. **نظرًا لصيانة الموقع، فإن الخدمات غير متوفرة مؤقتًا.** من خلال الاستمرار في استخدام الموقع بمجرد تشغيله، يعتبر جميع المستخدمين قد وافقوا على شروطنا القانونية. يرجى مراجعة الشروط عندما تصبح خدماتنا متاحة.' }
-            },
-            'pt': { 
-                baslik: 'Em Manutenção', 
-                mesaj: 'Estamos em manutenção programada para melhorar a qualidade do nosso serviço. Voltaremos em breve.',
-                privacyBtn: 'Política de Privacidade', 
-                termsBtn: 'Termos de Serviço', 
-                privacy: { title: 'Política de Privacidade (Manutenção)', text: 'Este website normalmente coleta dados mínimos para aprimorar a experiência do usuário. **Como o site está atualmente em manutenção, nenhum dado do usuário está sendo processado e nenhum cookie está em uso.** Nossa política de privacidade padrão entrará em vigor assim que a manutenção for concluída. Por favor, volte mais tarde para mais detalhes.' },
-                terms: { title: 'Terms of Service', text: 'Seu acesso e uso deste site estão condicionados à sua aceitação destes Termos de Serviço. **Devido à manutenção do site, os serviços estão temporariamente indisponíveis.** Ao continuar a usar o site quando ele estiver ativo, todos os usuários são considerados como tendo aceitado nossos termos legais. Por favor, revise os termos quando nossos serviços estiverem disponíveis.' }
-            },
-            'ru': { 
-                baslik: 'На Обслуживании', 
-                mesaj: 'В настоящее время мы проводим плановое обслуживание для повышения качества нашего сервиса. Скоро вернемся.',
-                privacyBtn: 'Политика конфиденциальности', 
-                termsBtn: 'Условия использования', 
-                privacy: { title: 'Политика конфиденциальности (Обслуживание)', text: 'Этот веб-сайт обычно собирает минимальные данные для улучшения пользовательского опыта. **Поскольку сайт в настоящее время находится на обслуживании, никакие пользовательские данные не обрабатываются, и файлы cookie не используются.** Наша стандартная политика конфиденциальности вступит в силу после завершения обслуживания. Пожалуйста, зайдите позже для получения более подробной информации.' },
-                terms: { title: 'Условия использования', text: 'Ваш доступ и использование этого сайта обусловлены вашим согласием с настоящими Условиями использования. **В связи с обслуживанием сайта услуги временно недоступны.** Считается, что все пользователи приняли наши юридические условия, продолжая использовать сайт после его запуска. Пожалуйста, ознакомьтесь с условиями, когда наши услуги станут доступны.' }
-            },
-            'ja': { 
-                baslik: 'メンテナンス中', 
-                mesaj: 'サービス品質向上のため、現在計画的なメンテナンスを実施しております。まもなく再開いたします。',
-                privacyBtn: 'プライバシーポリシー', 
-                termsBtn: '利用規約', 
-                privacy: { title: 'プライバシーポリシー (メンテナンス)', text: 'このウェブサイトは、通常、ユーザーエクスペリエンスを向上させるために最小限のデータを収集します。**現在、サイトはメンテナンス中のため、ユーザーデータは処理されておらず、Cookieも使用されていません。** メンテナンス完了後、当社の標準プライバシーポリシーが適用されます。詳細については、後でご確認ください。' },
-                terms: { title: '利用規約', text: 'このサイトへのアクセスおよび利用は、本利用規約への同意を条件とします。**サイトのメンテナンスのため、サービスは一時的に利用できません。** サイトが公開された後も引き続き使用することにより、すべてのユーザーが当社の法的条件に同意したものと見なされます。サービスが利用可能になった際に規約をご確認ください。' }
-            },
-            'de': { 
-                baslik: 'Wartungsarbeiten', 
-                mesaj: 'Wir führen derzeit geplante Wartungsarbeiten durch, um unsere Servicequalität zu verbessern. Wir sind bald zurück.',
-                privacyBtn: 'Datenschutzrichtlinie', 
-                termsBtn: 'Nutzungsbedingungen', 
-                privacy: { title: 'Datenschutzrichtlinie (Wartung)', text: 'Diese Website sammelt normalerweise minimale Daten, um die Benutzererfahrung zu verbessern. **Da sich die Website derzeit in Wartung befindet, werden keine Benutzerdaten verarbeitet und keine Cookies verwendet.** Unsere Standard-Datenschutzrichtlinie tritt in Kraft, sobald die Wartung abgeschlossen ist. Bitte prüfen Sie später erneut für weitere Details.' },
-                terms: { title: 'Nutzungsbedingungen', text: 'Ihr Zugriff auf und Ihre Nutzung dieser Website unterliegen Ihrer Zustimmung zu diesen Nutzungsbedingungen. **Aufgrund von Wartungsarbeiten stehen die Dienste vorübergehend nicht zur Verfügung.** Durch die weitere Nutzung der Website, sobald diese wieder live ist, wird davon ausgegangen, dass alle Benutzer unsere rechtlichen Bedingungen akzeptiert haben. Bitte überprüfen Sie die Bedingungen, sobald unsere Dienste verfügbar sind.' }
-            }
-        };
-
-        const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
-        const selectedLang = Object.keys(contentData).find(lang => userLang.startsWith(lang)) || 'en';
-
-        function getSiteBaseName() {
-            const hostname = window.location.hostname;
-            let name = hostname.replace(/^www\./, '');
+        document.addEventListener('DOMContentLoaded', (event) => {
             
-            if (name === 'localhost' || name.match(/^\d+(\.\d+){3}(:\d+)?$/)) {
-                return name.toUpperCase();
-            }
+            const SUPPORTED_LANGUAGES = {
+                'tr': ['Bakımdayız', 'Planlı güncellemeler yapıyoruz. Kısa süre içinde tekrar yayında olacağız.'],
+                'en': ['Under Maintenance', 'We are performing scheduled updates. We will be back online shortly.'],
+                'zh': ['系统维护中', '我们正在进行计划内的更新。我们将很快重新上线。'],
+                'es': ['En Mantenimiento', 'Estamos realizando actualizaciones programadas. Volveremos a estar en línea pronto.'],
+                'hi': ['रखरखाव में', 'हम निर्धारित अपडेट कर रहे हैं। हम जल्द ही वापस ऑनलाइन होंगे।'],
+                'ar': ['تحت الصيانة', 'نقوم بتحديثات مجدولة. سنعود للعمل قريباً.'],
+                'pt': ['Em Manutenção', 'Estamos realizando atualizações programadas. Voltaremos em breve.'],
+                'ru': ['На обслуживании', 'Мы проводим плановые обновления. Скоро вернемся в сеть.'],
+                'ja': ['メンテナンス中', '予定されたアップデートを実施しています。まもなく再開します。'],
+                'de': ['Wartungsarbeiten', 'Wir führen geplante Updates durch. Wir sind in Kürze wieder online.'],
+                'fr': ['En Maintenance', 'Nous effectuons des mises à jour planifiées. Nous serons bientôt de retour en ligne.'],
+            };
 
-            name = name.split('.')[0];
-            return name.toUpperCase();
-        }
+            const browserLang = navigator.language.split('-')[0].toLowerCase();
+            const content = SUPPORTED_LANGUAGES[browserLang] || SUPPORTED_LANGUAGES['en'];
 
-        function openModal(type) {
-            const modal = document.getElementById('policy-modal');
-            const content = contentData[selectedLang];
-            let doc;
-
-            if (type === 'privacy') {
-                doc = content.privacy;
-            } else if (type === 'terms') {
-                doc = content.terms;
-            } else {
-                return; 
-            }
-
-            document.getElementById('modal-title').textContent = doc.title;
+            document.getElementById('main-title').textContent = content[0];
+            document.getElementById('sub-text').textContent = content[1];
             
-            document.getElementById('policy-content').innerHTML = `<p>${doc.text.replace(/\*\*/g, '<strong>')}</p>`;
-            
-            modal.classList.add('active');
-        }
+            document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        function closeModal(event) {
-            if (event.target.classList.contains('close-btn') || event.target.classList.contains('modal-overlay')) {
-                document.getElementById('policy-modal').classList.remove('active');
+            function getSiteName() {
+                let hostname = window.location.hostname;
+                
+                if (hostname.startsWith('www.')) {
+                    hostname = hostname.substring(4);
+                }
+
+                const firstDotIndex = hostname.indexOf('.');
+
+                if (firstDotIndex === -1) {
+                    return hostname;
+                }
+                
+                return hostname.substring(0, firstDotIndex);
             }
-        }
 
-        const mainContent = contentData[selectedLang];
-        const siteBaseName = getSiteBaseName();
-        const currentYear = new Date().getFullYear();
-        
-        document.getElementById('baslik').textContent = mainContent.baslik;
-        document.getElementById('mesaj').textContent = mainContent.mesaj;
-        
-        document.title = `${mainContent.baslik} - ${siteBaseName}`;
-        
-        const siteNameElement = document.getElementById('site-name');
-        if (siteNameElement) {
-            siteNameElement.textContent = siteBaseName; 
-        }
-        
-        const privacyLink = `<a href="javascript:void(0);" onclick="openModal('privacy')">${mainContent.privacyBtn}</a>`;
-        const termsLink = `<a href="javascript:void(0);" onclick="openModal('terms')">${mainContent.termsBtn}</a>`;
-
-        const copyrightText = `&copy; ${currentYear} - ${siteBaseName} | ${privacyLink} | ${termsLink}`;
-
-        document.getElementById('copyright-text').innerHTML = copyrightText; 
+            const siteName = getSiteName().toUpperCase();
+            document.getElementById('site-name-top').textContent = siteName;
+            document.getElementById('site-name-copyright').textContent = siteName;
 
 
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        function applyTheme(e) {
-            if (e.matches) {
-                document.body.classList.add('dark-theme');
-            } else {
-                document.body.classList.remove('dark-theme');
+            const popupOverlay = document.getElementById('popup-overlay');
+            const privacyContent = document.getElementById('privacy-content');
+            const termsContent = document.getElementById('terms-content');
+
+            function playClickSound() {
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.5);
+                    
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.5);
+                } catch (e) {
+                    console.error("Audio API desteklenmiyor veya başlatılamadı:", e);
+                }
             }
-        }
-        applyTheme(prefersDarkScheme);
-        prefersDarkScheme.addListener(applyTheme);
-        
+
+            function playCloseSound() {
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.type = 'sawtooth';
+                    oscillator.frequency.setValueAtTime(150, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.3); 
+                    
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.3);
+                } catch (e) {
+                    console.error("Audio API desteklenmiyor veya başlatılamadı:", e);
+                }
+            }
+
+
+            window.openPopup = function(contentId) {
+                privacyContent.style.display = 'none';
+                termsContent.style.display = 'none';
+
+                if (contentId === 'privacy-content') {
+                    privacyContent.style.display = 'block';
+                } else if (contentId === 'terms-content') {
+                    termsContent.style.display = 'block';
+                }
+
+                popupOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                playClickSound();
+            };
+
+            window.closePopup = function() {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = '';
+                playCloseSound();
+            };
+        });
     </script>
 
 </body>
