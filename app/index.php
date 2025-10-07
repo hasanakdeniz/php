@@ -18,7 +18,8 @@ header('Expires: 0');
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            /* Mobil cihazlar için yatayda boşluk (padding) ekledik */
+            padding: 0 20px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -29,16 +30,19 @@ header('Expires: 0');
 
         .content {
             padding: 40px;
-            max-width: 500px;
+            /* Ekranın ortasına gelirken mobil cihazlarda daha iyi durması için max-width artırıldı */
+            max-width: 600px; 
+            width: 100%; /* İçeriğin mobil paddingi kullanması için */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: background 0.4s, box-shadow 0.4s;
+            box-sizing: border-box; /* Padding'in genişliğe dahil edilmesini sağlar */
         }
 
         .icon {
             font-size: 3.5em;
             margin-bottom: 25px;
-            color: #007bff; /* Açık ve Koyu modda aynı vurgu rengi */
+            color: #007bff; 
         }
 
         h1 {
@@ -67,17 +71,17 @@ header('Expires: 0');
         /* --- KOYU TEMA (Tarayıcı tercihine göre) --- */
         @media (prefers-color-scheme: dark) {
             body {
-                background-color: #1e1e1e; /* Koyu arka plan */
-                color: #f1f1f1; /* Açık yazı */
+                background-color: #1e1e1e;
+                color: #f1f1f1;
             }
 
             .content {
-                background: #2d2d30; /* Koyu içerik kutusu */
+                background: #2d2d30;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             }
 
             .icon {
-                color: #66b3ff; /* Koyu mod için farklı bir mavi tonu */
+                color: #66b3ff;
             }
             h1 {
                 color: #f1f1f1;
@@ -151,10 +155,7 @@ header('Expires: 0');
 
         // --- DİL ALGILAMA VE EKLEME ---
         function loadContent() {
-            // Tarayıcının ana dilini veya ilk tercih edilen dilini al
             const userLang = navigator.language.split('-')[0]; 
-            
-            // Eğer dil, tanımlı mesajlar içinde varsa onu kullan, yoksa Türkçe (tr) kullan
             const lang = messages[userLang] ? userLang : 'tr';
             const content = messages[lang];
             
@@ -162,7 +163,6 @@ header('Expires: 0');
             document.getElementById('main-message').textContent = content.msg1;
             document.getElementById('sub-message').textContent = content.msg2;
 
-            // HTML dil etiketini güncelle
             document.documentElement.lang = lang;
         }
 
