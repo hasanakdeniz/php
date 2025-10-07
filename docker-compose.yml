@@ -52,11 +52,11 @@ services:
       - PASV_MAX_PORT=21110
     ports:
       # FTP Kontrol Portu
-      - 21:21
+      - "21:21"
       # FTP Veri Portu (Aktif Mod)
-      - 20:20
+      - "20:20"
       # Pasif Port Aralığı (Güvenlik duvarında bu aralığı açmayı unutmayın)
-      - 21100-21110:21100-21110
+      - "21100-21110:21100-21110"
     volumes:
       # Web dosyalarına erişim için, host'taki `./app` klasörünü FTP ana dizinine (`/home/vsftpd`) bağlıyoruz.
       - ./app:/home/vsftpd 
