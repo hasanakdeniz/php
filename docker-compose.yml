@@ -40,13 +40,13 @@ services:
       - 21100-21110:21100-21110
     volumes:
       - ./app:/home/vsftpd/ftpuser
-      - ./vsftpd/vsftpd.conf:/etc/vsftpd/vsftpd.conf:ro
+      #- ./vsftpd/vsftpd.conf:/etc/vsftpd/vsftpd.conf:ro
     environment:
       FTP_USER: "ftpuser"
       FTP_PASS: "ftppassword"
       PASV_ENABLE: "YES"
-      #UMASK: "022"
-      #LOCAL_UMASK: "022"
+      UMASK: "022"
+      LOCAL_UMASK: "022"
       FTP_UID: "33" 
       FTP_GID: "33"
       VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
