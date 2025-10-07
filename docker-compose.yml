@@ -21,9 +21,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    build:
-      context: .
-      dockerfile: nginx.Dockerfile
+    image: nginx:alpine
     ports:
       - 80
       - 443
@@ -34,14 +32,24 @@ services:
       - php
     restart: unless-stopped
 
-  sftp:
-    image: atmoz/sftp:latest
-    volumes:
-      - ./app:/home/${SFTP_USER}/var/www/html
+  ftp:
+    image: fauria/vsftpd
     ports:
-      - "2222:22"
+      - 21:21
+      - 20:20
+      - 21100-21110:21100-21110
+    volumes:
+      - ./app:/home/vsftpd/ftpuser
+      #- ./vsftpd/vsftpd.conf:/etc/vsftpd/vsftpd.conf:ro
     environment:
-      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:33:33:/var/www/html
+      FTP_USER: "ftpuser"
+      FTP_PASS: "ftppassword"
+      PASV_ENABLE: "YES"
+      UMASK: "022"
+      LOCAL_UMASK: "022"
+      FTP_UID: "33" 
+      FTP_GID: "33"
+      VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
     restart: unless-stopped
 
 volumes:
