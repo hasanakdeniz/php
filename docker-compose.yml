@@ -47,8 +47,8 @@ services:
       PASV_ENABLE: "YES"
       UMASK: "011"
       LOCAL_UMASK: "011"
-      FTP_UID: "ftp" 
-      FTP_GID: "ftp"
+      FTP_UID: "83"
+      FTP_GID: "100"
       VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
       FILE_OPEN_MODE: "0644"
     restart: unless-stopped
