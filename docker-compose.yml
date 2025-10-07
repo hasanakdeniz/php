@@ -33,12 +33,13 @@ services:
     restart: unless-stopped
 
   sftp:
-    image: atmoz/sftp
-    command: ${SFTP_USER}:${SFTP_PASSWORD}:${WWW_DATA_UID}:${WWW_DATA_GID}::html
+    image: atmoz/sftp:latest
     volumes:
-      - ./app:/home/${SFTP_USER}/www
+      - ./app:/home/${SFTP_USER}/app
     ports:
       - "2222:22"
+    environment:
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:${WWW_DATA_UID}:${WWW_DATA_GID}:app
     restart: unless-stopped
 
 volumes:
