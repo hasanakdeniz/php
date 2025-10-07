@@ -34,9 +34,10 @@ services:
 
   sftp:
     image: atmoz/sftp
-    command: hasan:hasan:33:100
     volumes:
       - ./app:/home/hasan/www
+    environment:
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:83:100::upload
     ports:
       - "2222:22"
     restart: unless-stopped
