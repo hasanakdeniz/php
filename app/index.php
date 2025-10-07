@@ -70,8 +70,8 @@ header('Expires: 0');
         }
 
         .site-name-style {
-            font-size: 1.5rem; 
-            font-weight: 800;
+            font-size: 1.8rem; 
+            font-weight: 900;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -224,7 +224,7 @@ header('Expires: 0');
                 'ru': ['На обслуживании', 'Мы проводим плановые обновления. Скоро вернемся в сеть.'],
                 'ja': ['メンテナンス中', '予定されたアップデートを実施しています. まもなく再開します.'],
                 'de': ['Wartungsarbeiten', 'Wir führen geplante Updates durch. Wir sind in Kürze wieder online.'],
-                'fr': ['En Maintenance', 'Nous effectuamos des mises à jour planifiées. Nous serons bientôt de retour en ligne.'],
+                'fr': ['En Maintenance', 'Nous effectuamos des mises à jour planifiées. Nous serçi bientôt de retour en ligne.'],
             };
 
             const browserLang = navigator.language.split('-')[0].toLowerCase();
