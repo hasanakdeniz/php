@@ -34,7 +34,7 @@ services:
 
   sftp:
     image: atmoz/sftp
-    command: ${SFTP_USER}:${SFTP_PASSWORD}:${WWW_DATA_UID}:${WWW_DATA_GID}
+    command: ${SFTP_USER}:${SFTP_PASSWORD}:${WWW_DATA_UID}:${WWW_DATA_GID}::html
     volumes:
       - ./app:/home/${SFTP_USER}/www
     ports:
