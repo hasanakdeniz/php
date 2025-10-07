@@ -35,6 +35,7 @@
 
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -43,7 +44,8 @@
             color: var(--text-color-light);
             transition: color 0.8s;
             text-align: center;
-            padding: 20px;
+            padding: 20px 20px 80px 20px;
+            position: relative;
             
             animation: lightBackgroundShift 20s infinite alternate ease-in-out;
         }
@@ -106,46 +108,6 @@
             font-weight: 400;
         }
         
-        .button-group {
-            margin-top: 2.5rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap; 
-            justify-content: center;
-        }
-
-        .button-group button {
-            background-color: var(--button-bg-light);
-            color: var(--text-color-light);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .button-group button:hover {
-            background-color: var(--accent-color);
-            color: var(--card-bg-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        body.dark-theme .button-group button {
-            background-color: var(--button-bg-dark);
-            color: var(--text-color-dark);
-            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-        }
-        
-        body.dark-theme .button-group button:hover {
-            background-color: var(--accent-color);
-            color: var(--text-color-dark);
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
-        }
-
         .loading-dots {
             margin-top: 2rem;
             display: flex;
@@ -170,6 +132,37 @@
         @keyframes pulse {
             0%, 80%, 100% { opacity: 0.3; transform: scale(0.9); }
             40% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .site-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.8rem; 
+            color: var(--accent-color);
+            opacity: 0.6;
+            transition: color 0.6s, opacity 0.6s;
+            line-height: 1.5;
+        }
+        
+        body.dark-theme .site-footer {
+            color: var(--text-color-dark);
+            opacity: 0.5;
+        }
+        
+        .site-footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: text-decoration 0.3s;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        
+        .site-footer a:hover {
+            text-decoration: underline;
         }
 
         .modal-overlay {
@@ -269,11 +262,6 @@
         <div id="site-name" class="site-identifier">SITEADI</div>
         <p id="mesaj"></p>
         
-        <div id="button-group" class="button-group">
-            <button id="privacy-btn" onclick="openModal('privacy')"></button>
-            <button id="terms-btn" onclick="openModal('terms')"></button>
-        </div>
-        
         <div class="loading-dots">
             <span></span>
             <span></span>
@@ -281,8 +269,12 @@
         </div>
     </div>
 
+    <footer class="site-footer">
+        <p id="copyright-text"></p>
+    </footer>
+
     <div id="policy-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content">
+        <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close-btn" onclick="closeModal(event)">&times;</span>
             <h2 id="modal-title" class="modal-title"></h2>
             <div id="policy-content" class="modal-body">
@@ -416,15 +408,13 @@
         }
 
         const mainContent = contentData[selectedLang];
-        const siteBaseName = getSiteBaseName(); // Site adını bir kez alıyoruz
+        const siteBaseName = getSiteBaseName();
+        const currentYear = new Date().getFullYear();
         
+        // Ana içerik güncellemeleri
         document.getElementById('baslik').textContent = mainContent.baslik;
         document.getElementById('mesaj').textContent = mainContent.mesaj;
-
-        document.getElementById('privacy-btn').textContent = mainContent.privacyBtn;
-        document.getElementById('terms-btn').textContent = mainContent.termsBtn;
         
-        // Dinamik tarayıcı başlığını ayarlıyoruz: [Yerelleştirilmiş Başlık] - [SİTE ADI]
         document.title = `${mainContent.baslik} - ${siteBaseName}`;
         
         const siteNameElement = document.getElementById('site-name');
@@ -432,6 +422,18 @@
             siteNameElement.textContent = siteBaseName; 
         }
 
+        // Footer güncellemeleri
+        
+        const privacyLink = `<a href="javascript:void(0);" onclick="openModal('privacy')">${mainContent.privacyBtn}</a>`;
+        const termsLink = `<a href="javascript:void(0);" onclick="openModal('terms')">${mainContent.termsBtn}</a>`;
+
+        // İstenen format: © [YIL] - [SİTE ADI] | [GİZLİLİK] | [SÖZLEŞME]
+        const copyrightText = `&copy; ${currentYear} - ${siteBaseName} | ${privacyLink} | ${termsLink}`;
+
+        document.getElementById('copyright-text').innerHTML = copyrightText; 
+
+
+        // Karanlık/Açık Tema Algılama
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
         function applyTheme(e) {
             if (e.matches) {
