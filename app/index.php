@@ -12,7 +12,7 @@ header('Expires: 0');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tam Ekran Bakım (Kaymasız)</title>
+    <title>Tam Ekran Bakım (Son Sürüm)</title>
     <style>
         /* CSS Reset ve TAM EKRAN (Kaymayı Engelleme) */
         html, body {
@@ -20,7 +20,7 @@ header('Expires: 0');
             padding: 0;
             height: 100%; 
             width: 100%;
-            /* Kaymayı engellemek için en önemli komut */
+            /* Kaymayı engeller */
             overflow: hidden; 
             box-sizing: border-box; 
         }
@@ -30,21 +30,22 @@ header('Expires: 0');
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Tarayıcı yüksekliğini kullan */
             min-height: 100vh; 
             transition: background-color 0.4s, color 0.4s;
             text-align: center;
             
-            /* Mobil kenar boşluğu */
-            padding: 0 20px; 
+            /* Mobil kenar boşluğu sadece yatayda veriliyor */
+            padding: 0 5%; /* Mobil cihazlarda daha geniş dursun diye %5 boşluk */
             box-sizing: border-box; 
         }
 
         /* --- TEMA VE İÇERİK STİLLERİ --- */
 
         .content {
-            padding: 40px;
-            max-width: 600px; 
+            /* İçerik kutusunun iç padding'i */
+            padding: 50px 30px; 
+            /* Daha geniş olması için max-width artırıldı */
+            max-width: 700px; 
             width: 100%; 
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -59,7 +60,7 @@ header('Expires: 0');
         }
 
         h1 {
-            font-size: 2.2em;
+            font-size: 2.5em; /* Başlık biraz büyütüldü */
             font-weight: 600;
             margin-bottom: 15px;
         }
@@ -67,6 +68,7 @@ header('Expires: 0');
         p {
             font-size: 1.1em;
             line-height: 1.6;
+            color: #6c757d; /* Açık modda metin rengi */
             margin-top: 5px;
         }
         
@@ -99,6 +101,9 @@ header('Expires: 0');
             h1 {
                 color: #f1f1f1;
             }
+            p {
+                color: #b5b5b5; /* Koyu modda metin rengi */
+            }
         }
     </style>
 </head>
@@ -111,7 +116,7 @@ header('Expires: 0');
     </div>
 
     <script>
-        // ... (Dil kodları aynı kaldı) ...
+        // --- 10 DİL İÇERİĞİ ---
         const messages = {
             'tr': { title: "Güncelleniyoruz!", msg1: "Sizlere daha iyi hizmet sunmak adına sitemizde kısa bir bakım çalışması yürütülmektedir.", msg2: "Çok yakında, yeni ve geliştirilmiş özelliklerle geri döneceğiz." },
             'en': { title: "Under Maintenance", msg1: "We are performing a brief maintenance update to provide you with a better experience.", msg2: "We will be back shortly with new and improved features." },
