@@ -39,17 +39,17 @@ services:
       - 20:20
       - 21100-21110:21100-21110
     volumes:
-      - ./app:/vsftpd/ftpuser
+      - ./app:/home/vsftpd/ftpuser/${FTP_USER}
     environment:
       FTP_USER: "${FTP_USER}"
       FTP_PASS: "${FTP_PASSWORD}"
-      PASV_ENABLE: "YES"      
-      VIRTUAL_ROOT: "/vsftpd/ftpuser"
+      PASV_ENABLE: "YES"
       UMASK: "022"
       LOCAL_UMASK: "022"
       FILE_OPEN_MODE: "0644"
       FTP_UID: "14"
       FTP_GID: "50"
+      VIRTUAL_ROOT: "/home/vsftpd/ftpuser/${FTP_USER}"
     restart: unless-stopped
 
 volumes:
