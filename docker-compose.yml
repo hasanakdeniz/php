@@ -32,5 +32,18 @@ services:
       - php
     restart: unless-stopped
 
+  ftp:
+    image: fauria/vsftpd
+    ports:
+      - 21
+      - 20
+    volumes:
+      - ./app:/home/vsftpd/app
+    environment:
+      FTP_USER: "ftpuser"
+      FTP_PASS: "ftppassword"
+      PASV_ENABLE: "YES"
+    restart: unless-stopped
+
 volumes:
   data-db:
