@@ -44,7 +44,7 @@ services:
       FTP_USER: "ftpuser"
       FTP_PASS: "ftppassword"
       PASV_ENABLE: "YES"
-      UMASK: "002"
+      UMASK: "022"
       FTP_UID: "33" 
       FTP_GID: "33"
       CHMOD_UPLOAD: "YES"
