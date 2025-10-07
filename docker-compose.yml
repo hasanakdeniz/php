@@ -47,6 +47,8 @@ services:
       UMASK: "002"
       FTP_UID: "1000" 
       FTP_GID: "1000"
+      CHMOD_UPLOAD: "YES"
+      VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
     restart: unless-stopped
 
 volumes:
