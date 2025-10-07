@@ -43,6 +43,7 @@ services:
     environment:
       - FTP_USER=${SFTP_USER}
       - FTP_PASS=${SFTP_PASSWORD}
+      - PASV_ENABLE=YES
       - PASV_ADDRESS=${SFTP_IP}  # Yerel için; sunucu IP'si ile değiştirin
       - PASV_MIN_PORT=21100
       - PASV_MAX_PORT=21110
