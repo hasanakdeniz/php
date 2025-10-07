@@ -148,9 +148,9 @@ header('Expires: 0');
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 20px 0;
+            padding: 10px 0;
             text-align: center;
-            font-size: 0.8rem; 
+            font-size: 0.65rem; 
             color: var(--accent-color);
             opacity: 0.6;
             transition: color 0.6s, opacity 0.6s;
@@ -458,3 +458,4 @@ header('Expires: 0');
 
 </body>
 </html>
+
