@@ -45,8 +45,8 @@ services:
       FTP_PASS: "ftppassword"
       PASV_ENABLE: "YES"
       UMASK: "002"
-      FTP_UID: "83" 
-      FTP_GID: "100"
+      FTP_UID: "100" 
+      FTP_GID: "83"
       CHMOD_UPLOAD: "YES"
       VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
     restart: unless-stopped
