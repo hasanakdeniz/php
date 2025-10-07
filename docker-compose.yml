@@ -39,7 +39,7 @@ services:
       - 20:20
       - 21100-21110:21100-21110
     volumes:
-      - ./app:/app
+      - ./app:/home/vsftpd/ftpuser
     environment:
       FTP_USER: "ftpuser"
       FTP_PASS: "ftppassword"
