@@ -41,8 +41,8 @@ services:
     volumes:
       - ./app:/home/vsftpd/ftpuser
     environment:
-      FTP_USER: "ftpuser"
-      FTP_PASS: "ftppassword"
+      FTP_USER: "${FTP_USER}"
+      FTP_PASS: "${FTP_PASSWORD}"
       PASV_ENABLE: "YES"
       UMASK: "022"
       LOCAL_UMASK: "022"
