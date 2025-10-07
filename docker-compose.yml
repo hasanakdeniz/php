@@ -34,7 +34,7 @@ services:
 
   sftp:
     image: atmoz/sftp
-    command: hasan:hasan:0:0
+    command: hasan:hasan:33:100
     volumes:
       - ./app:/home/hasan/www
     ports:
