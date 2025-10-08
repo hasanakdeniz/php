@@ -8,34 +8,23 @@ RUN apk add --no-cache \
     && addgroup -g 33 php \
     && adduser -u 33 -G php -s /bin/sh -D php \
     && docker-php-ext-configure gd --with-jpeg \
-    && docker-php-ext-install pdo_mysql gd zip \
+    && docker-php-ext-install mysqli pdo_mysql gd zip \
     && rm -rf /var/cache/apk/*
 
-# Composer'ı yükle
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
-# Composer'ın çalıştığını doğrula
 RUN composer --version
 
-# Composer dependencies'i yükle (eğer composer.json varsa)
-RUN if [ -f /var/www/html/composer.json ]; then \
-        composer install --no-dev --optimize-autoloader; \
-    else \
-        echo "composer.json bulunamadı, bağımlılıklar yüklenmedi."; \
-    fi
-
-# PHP konfigürasyon ayarlarını yap
 RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/custom.ini \
     && echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/custom.ini \
     && echo "display_errors=On" >> /usr/local/etc/php/conf.d/custom.ini
 
-# Kullanıcı izinlerini ayarla
 RUN chown -R 33:33 /var/www/html \
     && find /var/www/html -type d -exec chmod 775 {} \; \
     && find /var/www/html -type f -exec chmod 664 {} \;
 
-# PHP-FPM'in varsayılan portunu tanımla
+USER 33
+
 EXPOSE 9000
 
-# PHP-FPM'i çalıştır
 CMD ["php-fpm"]
