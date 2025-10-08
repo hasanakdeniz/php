@@ -1,20 +1,4 @@
 services:
-  db:
-    image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-      - data-db:/var/lib/mysql
-    healthcheck:
-     test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
-     interval: 5s
-     timeout: 3s
-     retries: 5
-    restart: unless-stopped
-
   php:
     build:
       context: .
