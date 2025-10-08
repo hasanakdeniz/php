@@ -33,24 +33,13 @@ services:
     restart: unless-stopped
 
   ftp:
-    image: fauria/vsftpd
+    image: atmoz/sftp
     ports:
-      - 21:21
-      - 20:20
-      - 21100-21110:21100-21110
+      - "22:22"
     volumes:
-      - ./app:/home/vsftpd/${FTP_USER}
-    environment:
-      FTP_USER: "${FTP_USER}"
-      FTP_PASS: "${FTP_PASSWORD}"
-      PASV_ENABLE: "YES"
-      UMASK: "022"
-      LOCAL_UMASK: "022"
-      FILE_OPEN_MODE: "0644"
-      FTP_UID: "14"
-      FTP_GID: "50"
-      VIRTUAL_ROOT: "/home/vsftpd/ftpuser"
-    restart: always
+      - ./app:/home/${SFTP_USER}/upload
+    command: "${SFTP_USER}:${SFTP_PASSWORD}:1001"
+    restart: unless-stopped
 
 volumes:
   data-db:
