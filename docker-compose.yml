@@ -39,7 +39,7 @@ services:
     ports:
       - "22:22"
     volumes:
-      - ./app:/home/upload
+      - ./app:/home/${SFTP_USER}/upload
     command: "${SFTP_USER}:${SFTP_PASSWORD}:1000:100:/home"
     restart: unless-stopped
 
