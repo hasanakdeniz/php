@@ -38,7 +38,7 @@ services:
       - "22:22"
     volumes:
       - ./app:/home/${SFTP_USER}/sftp_user/upload
-    command: sh -c "apk update && apk add -q --no-cache nano && /entrypoint \'sftp_user:${SFTP_PASSWORD}:1001:100:/asd\'"
+    command: sh -c "apk update && apk add -q --no-cache nano && /entrypoint \'${SFTP_USER}:${SFTP_PASSWORD}:1001:100:/asd\'"
     restart: unless-stopped
 
 volumes:
