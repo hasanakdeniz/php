@@ -1,6 +1,6 @@
 FROM atmoz/sftp:alpine
 
-ARG SFTP_USER=sftp_user
+ARG SFTP_USER
 ARG SFTP_UID=1000
 ARG SFTP_GID=1000
 
