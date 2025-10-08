@@ -38,7 +38,7 @@ services:
       - "22:22"
     volumes:
       - ./app:/home/${SFTP_USER}/sftp_user/upload
-    command: "${SFTP_USER}:${SFTP_PASSWORD}:1000:100:/sftp_user && addgroup -g 1000 ${SFTP_USER}"
+    command: "${SFTP_USER}:${SFTP_PASSWORD}:1000:100:/sftp_user && apk add nano"
     restart: unless-stopped
 
 volumes:
