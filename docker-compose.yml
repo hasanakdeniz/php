@@ -38,7 +38,7 @@ services:
       - "${SFTP_PORT}"
     volumes:
       - ./app:/home/${SFTP_USER}/upload
-    command: sh -c "cd / && apk update && apk add -q --no-cache nano && chown -R 1001:100 /home/${SFTP_USER}/upload && /entrypoint \'${SFTP_USER}:${SFTP_PASSWORD}:1001:100:/upload/\'"
+    command: sh -c "cd / && apk update && apk add -q --no-cache nano && chown -R 1001:100 /home/${SFTP_USER}/upload && /entrypoint \'${SFTP_USER}:${SFTP_PASSWORD}:1001:100:/upload\'"
     restart: unless-stopped
 
 volumes:
