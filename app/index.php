@@ -1,12 +1,3 @@
-<?php
-// HTTP yanıt kodu 503 (Service Unavailable) olarak ayarlanır
-http_response_code(503);
-
-// Sayfanın yenilenmesini önlemek için önbellekleme başlıkları gönderilir
-header('Cache-Control: no-cache, no-store, must-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
-?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
