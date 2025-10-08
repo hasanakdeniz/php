@@ -38,7 +38,7 @@ services:
       - "22:22"
     volumes:
       - ./app:/home/${SFTP_USER}/sftp_user/upload
-    command: sh -c "'${SFTP_USER}:${SFTP_PASSWORD}:1000:100:/sftp_user' /entrypoint \ && apk update && apk add -q --no-cache nano"
+    command: sh -c "/entrypoint \'${SFTP_USER}:${SFTP_PASSWORD}:1000:100:/sftp_user\' && apk update && apk add -q --no-cache nano"
     restart: unless-stopped
 
 volumes:
