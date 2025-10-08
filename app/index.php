@@ -163,35 +163,6 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .social-links {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-        }
-
-        .social-links a {
-            color: var(--text);
-            font-size: 1.6rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: scale(1.15) translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
         .copyright {
             margin-top: 25px;
             font-size: 0.9rem;
@@ -384,12 +355,6 @@
                 padding: 25px 20px;
             }
 
-            .social-links a {
-                width: 45px;
-                height: 45px;
-                font-size: 1.4rem;
-            }
-
             .legal-links {
                 flex-direction: column;
                 gap: 8px;
@@ -448,13 +413,6 @@
                 <option value="indigo">🌀 Indigo Tema</option>
                 <option value="cyan">💎 Camgöbeği</option>
             </select>
-        </div>
-
-        <div class="social-links">
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="Instagram">📸</a>
-            <a href="#" title="Facebook">👥</a>
-            <a href="#" title="Email">✉️</a>
         </div>
 
         <div class="copyright">
