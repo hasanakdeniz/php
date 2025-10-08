@@ -11,6 +11,8 @@ php prepared for dokploy
         - main
       - Compose Path:
         - ./docker-compose.yml
+- Environment
+  - Copy the .env file.
 - Advanced
   - Enable Isolated Deployment
     - Enable
