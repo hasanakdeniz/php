@@ -21,6 +21,9 @@ services:
       dockerfile: php.Dockerfile
     volumes:
       - ./app:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
   nginx:
