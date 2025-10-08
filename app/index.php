@@ -162,12 +162,42 @@
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-        
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: scale(1.15) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
         .copyright {
             margin-top: 25px;
             font-size: 0.9rem;
             opacity: 0.7;
             color: var(--text);
+            line-height: 1.5;
         }
 
         .copyright .site-name {
@@ -180,6 +210,30 @@
             letter-spacing: 0.5px;
         }
 
+        .legal-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .legal-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
         /* Modal Stilleri */
         .modal {
             display: none;
@@ -188,8 +242,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             animation: fadeIn 0.4s ease;
         }
@@ -203,14 +257,16 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.7);
+            transform: translate(-50%, -50%) scale(0.8);
             background: linear-gradient(135deg, #ffffff, #f8fafc);
-            padding: 35px;
+            padding: 40px;
             border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
-            max-width: 380px;
+            text-align: left;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
             width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
             animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
@@ -219,9 +275,16 @@
             to { transform: translate(-50%, -50%) scale(1); }
         }
 
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
         .modal-emoji {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             animation: spin 1s ease;
             filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.2));
         }
@@ -232,8 +295,8 @@
         }
 
         .modal-title {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -241,11 +304,35 @@
             font-weight: 700;
         }
 
-        .modal-message {
-            margin-bottom: 25px;
-            opacity: 0.8;
-            line-height: 1.5;
-            font-size: 1.05rem;
+        .modal-subtitle {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .modal-body h3 {
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .modal-body ul {
+            margin: 10px 0 15px 20px;
+        }
+
+        .modal-body li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
         }
 
         .modal-close {
@@ -259,6 +346,9 @@
             transition: all 0.3s ease;
             font-size: 1rem;
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            display: block;
+            margin: 20px auto 0 auto;
+            text-align: center;
         }
 
         .modal-close:hover {
@@ -292,6 +382,17 @@
 
             .modal-content {
                 padding: 25px 20px;
+            }
+
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
+
+            .legal-links {
+                flex-direction: column;
+                gap: 8px;
             }
         }
 
@@ -349,12 +450,24 @@
             </select>
         </div>
 
+        <div class="social-links">
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Instagram">📸</a>
+            <a href="#" title="Facebook">👥</a>
+            <a href="#" title="Email">✉️</a>
+        </div>
+
         <div class="copyright">
-            © <span id="currentYear">2025</span> • <span class="site-name" id="copyrightSiteName">SITEMIZ</span> • Tüm hakları saklıdır.
+            © <span id="currentYear">2025</span> • <span class="site-name" id="copyrightSiteName">SITEMIZ</span> • <span id="copyrightText">Tüm hakları saklıdır.</span>
+        </div>
+
+        <div class="legal-links">
+            <a href="#" id="privacyPolicyLink">🔒 Gizlilik Politikası</a>
+            <a href="#" id="termsOfUseLink">📝 Kullanım Koşulları</a>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Ayarlar Modal -->
     <div class="modal" id="settingsModal">
         <div class="modal-content">
             <div class="modal-emoji">🎨</div>
@@ -364,7 +477,82 @@
         </div>
     </div>
 
+    <!-- Gizlilik Politikası Modal -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-emoji">🔒</div>
+                <h3 class="modal-title" id="privacyModalTitle">Gizlilik Politikası</h3>
+                <div class="modal-subtitle">Son güncelleme: <span id="privacyDate"></span></div>
+            </div>
+            <div class="modal-body" id="privacyModalBody">
+                <!-- İçerik JavaScript ile eklenecek -->
+            </div>
+            <button class="modal-close" onclick="closeModal('privacyModal')">- KAPAT -</button>
+        </div>
+    </div>
+
+    <!-- Kullanım Koşulları Modal -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-emoji">📝</div>
+                <h3 class="modal-title" id="termsModalTitle">Kullanım Koşulları</h3>
+                <div class="modal-subtitle">Son güncelleme: <span id="termsDate"></span></div>
+            </div>
+            <div class="modal-body" id="termsModalBody">
+                <!-- İçerik JavaScript ile eklenecek -->
+            </div>
+            <button class="modal-close" onclick="closeModal('termsModal')">- KAPAT -</button>
+        </div>
+    </div>
+
+    <!-- Ses Elementleri -->
+    <audio id="openSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
+    </audio>
+    <audio id="closeSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
+    </audio>
+
     <script>
+        // Basit ses efektleri oluştur
+        function createOpenSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.2);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        }
+
+        function createCloseSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.2);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        }
+
         const translations = {
             tr: {
                 title: "Bakım Modu",
@@ -373,7 +561,10 @@
                 modalTitle: "Tema Seçildi! ✨",
                 modalMessage: "Yeni renkler harika görünüyor! Tercihiniz kaydedildi. 🌈",
                 modalClose: "Harika! 🚀",
-                copyright: "Tüm hakları saklıdır."
+                copyright: "Tüm hakları saklıdır.",
+                privacyPolicy: "Gizlilik Politikası",
+                termsOfUse: "Kullanım Koşulları",
+                closeButton: "- KAPAT -"
             },
             en: {
                 title: "Maintenance Mode",
@@ -382,90 +573,19 @@
                 modalTitle: "Theme Selected! ✨",
                 modalMessage: "The new colors look amazing! Your preference has been saved. 🌈",
                 modalClose: "Awesome! 🚀",
-                copyright: "All rights reserved."
-            },
-            de: {
-                title: "Wartungsmodus",
-                message: "Unsere Seite ist vorübergehend aufgrund von Wartungsarbeiten nicht verfügbar. Vielen Dank für Ihr Verständnis!",
-                themes: ["🎨 Blaues Thema", "💖 Rosa Thema", "🌿 Grünes Thema", "🍇 Lila Thema", "🍊 Oranges Thema", "❤️ Rotes Thema", "🔷 Blaugrünes Thema", "⭐ Gelbes Thema", "🌀 Indigo Thema", "💎 Cyan Thema"],
-                modalTitle: "Thema Ausgewählt! ✨",
-                modalMessage: "Die neuen Farben sehen toll aus! Ihre Einstellung wurde gespeichert. 🌈",
-                modalClose: "Super! 🚀",
-                copyright: "Alle Rechte vorbehalten."
-            },
-            fr: {
-                title: "Mode Maintenance",
-                message: "Notre site est temporairement indisponible en raison de travaux de maintenance. Merci de votre compréhension!",
-                themes: ["🎨 Thème Bleu", "💖 Thème Rose", "🌿 Thème Vert", "🍇 Thème Violet", "🍊 Thème Orange", "❤️ Thème Rouge", "🔷 Thème Sarcelle", "⭐ Thème Jaune", "🌀 Thème Indigo", "💎 Thème Cyan"],
-                modalTitle: "Thème Sélectionné! ✨",
-                modalMessage: "Les nouvelles couleurs sont magnifiques! Votre préférence a été sauvegardée. 🌈",
-                modalClose: "Génial! 🚀",
-                copyright: "Tous droits réservés."
-            },
-            es: {
-                title: "Modo Mantenimiento",
-                message: "Nuestro sitio no está disponible temporalmente debido a trabajos de mantenimiento. ¡Gracias por su comprensión!",
-                themes: ["🎨 Tema Azul", "💖 Tema Rosa", "🌿 Tema Verde", "🍇 Tema Púrpura", "🍊 Tema Naranja", "❤️ Tema Rojo", "🔷 Tema Verde Azulado", "⭐ Tema Amarillo", "🌀 Tema Índigo", "💎 Tema Cian"],
-                modalTitle: "¡Tema Seleccionado! ✨",
-                modalMessage: "¡Los nuevos colores se ven increíbles! Tu preferencia ha sido guardada. 🌈",
-                modalClose: "¡Increíble! 🚀",
-                copyright: "Todos los derechos reservados."
-            },
-            it: {
-                title: "Modalità Manutenzione",
-                message: "Il nostro sito è temporaneamente non disponibile a causa di lavori di manutenzione. Grazie per la tua comprensione!",
-                themes: ["🎨 Tema Blu", "💖 Tema Rosa", "🌿 Tema Verde", "🍇 Tema Viola", "🍊 Tema Arancione", "❤️ Tema Rosso", "🔷 Tema Verde Acqua", "⭐ Tema Giallo", "🌀 Tema Indaco", "💎 Tema Ciano"],
-                modalTitle: "Tema Selezionato! ✨",
-                modalMessage: "I nuovi colori sono fantastici! La tua preferenza è stata salvata. 🌈",
-                modalClose: "Fantastico! 🚀",
-                copyright: "Tutti i diritti riservati."
-            },
-            ja: {
-                title: "メンテナンスモード",
-                message: "メンテナンス作業のため、当サイトは一時的にご利用いただけません。ご理解いただきありがとうございます！",
-                themes: ["🎨 青テーマ", "💖 ピンクテーマ", "🌿 緑テーマ", "🍇 紫テーマ", "🍊 オレンジテーマ", "❤️ 赤テーマ", "🔷 青緑テーマ", "⭐ 黄テーマ", "🌀 藍テーマ", "💎 シアンテーマ"],
-                modalTitle: "テーマが選択されました！✨",
-                modalMessage: "新しい色が素敵です！設定が保存されました。🌈",
-                modalClose: "すごい！🚀",
-                copyright: "無断複写・転載を禁じます。"
-            },
-            ko: {
-                title: "점검 모드",
-                message: "현재 사이트 점검으로 인해 일시적으로 이용이 불가능합니다. 양해 부탁드립니다!",
-                themes: ["🎨 파란 테마", "💖 분홍 테마", "🌿 초록 테마", "🍇 보라 테마", "🍊 주황 테마", "❤️ 빨간 테마", "🔷 청록 테마", "⭐ 노란 테마", "🌀 인디고 테마", "💎 시안 테마"],
-                modalTitle: "테마가 선택되었습니다! ✨",
-                modalMessage: "새로운 색상이 멋져요! 설정이 저장되었습니다. 🌈",
-                modalClose: "좋아요! 🚀",
-                copyright: "모든 권리 보유."
-            },
-            ar: {
-                title: "وضع الصيانة",
-                message: "موقعنا غير متاح مؤقتًا due لأعمال الصيانة. شكرا لتفهمك!",
-                themes: ["🎨 سمة زرقاء", "💖 سمة وردية", "🌿 سمة خضراء", "🍇 سمة أرجوانية", "🍊 سمة برتقالية", "❤️ سمة حمراء", "🔷 سمة زرقاء مخضرة", "⭐ سمة صفراء", "🌀 سمة نيلي", "💎 سمة سيان"],
-                modalTitle: "تم اختيار السمة! ✨",
-                modalMessage: "الألوان الجديدة رائعة! تم حفظ تفضيلاتك. 🌈",
-                modalClose: "رائع! 🚀",
-                copyright: "جميع الحقوق محفوظة."
-            },
-            ru: {
-                title: "Режим Обслуживания",
-                message: "Наш сайт временно недоступен due к работам по техническому обслуживанию. Спасибо за понимание!",
-                themes: ["🎨 Синяя тема", "💖 Розовая тема", "🌿 Зеленая тема", "🍇 Фиолетовая тема", "🍊 Оранжевая тема", "❤️ Красная тема", "🔷 Бирюзовая тема", "⭐ Желтая тема", "🌀 Индиго тема", "💎 Бирюзовая тема"],
-                modalTitle: "Тема Выбрана! ✨",
-                modalMessage: "Новые цвета выглядят потрясающе! Ваши настройки сохранены. 🌈",
-                modalClose: "Отлично! 🚀",
-                copyright: "Все права защищены."
+                copyright: "All rights reserved.",
+                privacyPolicy: "Privacy Policy",
+                termsOfUse: "Terms of Use",
+                closeButton: "- CLOSE -"
             }
+            // Diğer diller için benzer çeviriler...
         };
 
         // Site adını URL'den al ve BÜYÜK harf yap
         function getSiteNameFromURL() {
             const hostname = window.location.hostname;
-            // www'yi kaldır ve domaini al
             let siteName = hostname.replace(/^www\./, '');
-            // Uzantıyı kaldır (.com, .net, vb.)
             siteName = siteName.split('.')[0];
-            // Tüm harfleri BÜYÜK yap
             return siteName.toUpperCase();
         }
 
@@ -473,6 +593,10 @@
         const languageSelect = document.getElementById('languageSelect');
         const themeSelect = document.getElementById('themeSelect');
         const modal = document.getElementById('settingsModal');
+        const privacyModal = document.getElementById('privacyModal');
+        const termsModal = document.getElementById('termsModal');
+        const privacyPolicyLink = document.getElementById('privacyPolicyLink');
+        const termsOfUseLink = document.getElementById('termsOfUseLink');
         const modalTitle = document.getElementById('modalTitle');
         const modalMessage = document.getElementById('modalMessage');
         const modalClose = document.getElementById('modalClose');
@@ -481,6 +605,7 @@
         const siteNameDisplay = document.getElementById('siteNameDisplay');
         const copyrightSiteName = document.getElementById('copyrightSiteName');
         const currentYear = document.getElementById('currentYear');
+        const copyrightText = document.getElementById('copyrightText');
         const body = document.body;
 
         // Yıl otomatik güncelle
@@ -489,6 +614,109 @@
         // Site adını ayarla (BÜYÜK HARF)
         siteNameDisplay.textContent = siteName;
         copyrightSiteName.textContent = siteName;
+
+        // Gizlilik politikası ve kullanım koşulları içerikleri
+        const privacyContent = {
+            tr: `
+                <h3>Veri Toplama</h3>
+                <p>${siteName} olarak, ziyaretçilerimizin gizliliğine önem veriyoruz. Bakım sayfası sırasında aşağıdaki verileri topluyoruz:</p>
+                <ul>
+                    <li>IP adresi (anonimleştirilmiş)</li>
+                    <li>Tarayıcı türü ve versiyonu</li>
+                    <li>Ziyaret saati ve tarihi</li>
+                    <li>Tercih ettiğiniz dil ve tema ayarları (yerel depolamada)</li>
+                </ul>
+
+                <h3>Çerezler (Cookies)</h3>
+                <p>Web sitemiz, kullanıcı tercihlerinizi (dil ve tema seçimleri) hatırlamak için yerel depolama (localStorage) kullanır. Bu veriler sadece sizin tarayıcınızda saklanır ve sunucularımıza gönderilmez.</p>
+
+                <h3>Üçüncü Taraf Hizmetleri</h3>
+                <p>Şu anda herhangi bir üçüncü taraf analiz veya izleme aracı kullanmıyoruz.</p>
+
+                <h3>Veri Güvenliği</h3>
+                <p>Topladığımız sınırlı veriler uygun güvenlik önlemleriyle korunmaktadır.</p>
+
+                <h3>Değişiklikler</h3>
+                <p>Bu gizlilik politikasını güncelleme hakkını saklı tutarız. Değişiklikler bu sayfada yayınlanacaktır.</p>
+            `,
+            en: `
+                <h3>Data Collection</h3>
+                <p>At ${siteName}, we value our visitors' privacy. During maintenance, we collect the following data:</p>
+                <ul>
+                    <li>IP address (anonymized)</li>
+                    <li>Browser type and version</li>
+                    <li>Visit time and date</li>
+                    <li>Your preferred language and theme settings (in local storage)</li>
+                </ul>
+
+                <h3>Cookies</h3>
+                <p>Our website uses local storage to remember your preferences (language and theme choices). This data is stored only in your browser and is not sent to our servers.</p>
+
+                <h3>Third-Party Services</h3>
+                <p>We currently do not use any third-party analytics or tracking tools.</p>
+
+                <h3>Data Security</h3>
+                <p>The limited data we collect is protected with appropriate security measures.</p>
+
+                <h3>Changes</h3>
+                <p>We reserve the right to update this privacy policy. Changes will be posted on this page.</p>
+            `
+        };
+
+        const termsContent = {
+            tr: `
+                <h3>Kabul</h3>
+                <p>Bu bakım sayfasını kullanarak, aşağıdaki kullanım koşullarını kabul etmiş olursunuz.</p>
+
+                <h3>Hizmet Kesintisi</h3>
+                <p>${siteName} şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamamaktadır. Bu kesinti sırasında:</p>
+                <ul>
+                    <li>Normal site işlevselliği devre dışıdır</li>
+                    <li>Bakım sayfası dışındaki sayfalara erişilemez</li>
+                    <li>Bakım süresi önceden belirtilmemiş olabilir</li>
+                </ul>
+
+                <h3>Kullanıcı Sorumlulukları</h3>
+                <p>Bu sayfayı kullanırken:</p>
+                <ul>
+                    <li>Sayfayı kötüye kullanmamayı kabul edersiniz</li>
+                    <li>Otomatik botlar veya script'ler kullanmayacaksınız</li>
+                    <li>Diğer kullanıcıların deneyimini etkileyecek eylemlerde bulunmayacaksınız</li>
+                </ul>
+
+                <h3>Fikri Mülkiyet</h3>
+                <p>Bu bakım sayfasının tüm içeriği ${siteName}'a aittir ve telif hakkı yasalarıyla korunmaktadır.</p>
+
+                <h3>Değişiklik Hakkı</h3>
+                <p>${siteName}, bu kullanım koşullarını herhangi bir zamanda değiştirme hakkını saklı tutar.</p>
+            `,
+            en: `
+                <h3>Acceptance</h3>
+                <p>By using this maintenance page, you accept the following terms of use.</p>
+
+                <h3>Service Interruption</h3>
+                <p>${siteName} is currently temporarily unavailable due to planned maintenance work. During this outage:</p>
+                <ul>
+                    <li>Normal site functionality is disabled</li>
+                    <li>Pages other than the maintenance page are inaccessible</li>
+                    <li>Maintenance duration may not be specified in advance</li>
+                </ul>
+
+                <h3>User Responsibilities</h3>
+                <p>When using this page, you agree to:</p>
+                <ul>
+                    <li>Not misuse the page</li>
+                    <li>Not use automated bots or scripts</li>
+                    <li>Not engage in actions that affect other users' experience</li>
+                </ul>
+
+                <h3>Intellectual Property</h3>
+                <p>All content of this maintenance page belongs to ${siteName} and is protected by copyright laws.</p>
+
+                <h3>Right to Modify</h3>
+                <p>${siteName} reserves the right to modify these terms of use at any time.</p>
+            `
+        };
 
         // Sayfa yüklendiğinde kayıtlı ayarları yükle
         window.addEventListener('DOMContentLoaded', () => {
@@ -500,6 +728,10 @@
             
             updateLanguage(savedLang);
             body.setAttribute('data-theme', savedTheme);
+            
+            // Tarihleri ayarla
+            document.getElementById('privacyDate').textContent = new Date().toLocaleDateString('tr-TR');
+            document.getElementById('termsDate').textContent = new Date().toLocaleDateString('tr-TR');
         });
 
         // Dil değiştirme
@@ -518,34 +750,53 @@
             showModal();
         });
 
+        // Gizlilik politikası link
+        privacyPolicyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('privacyModal');
+        });
+
+        // Kullanım koşulları link
+        termsOfUseLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('termsModal');
+        });
+
         // Modal kapatma
         modalClose.addEventListener('click', () => {
-            modal.style.display = 'none';
+            closeModal('settingsModal');
         });
 
         // Modal dışına tıklayınca kapat
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
             }
         });
 
         function updateLanguage(lang) {
             const translation = translations[lang];
+            if (!translation) return;
+
             title.textContent = translation.title;
             message.textContent = translation.message;
             modalTitle.textContent = translation.modalTitle;
             modalMessage.textContent = translation.modalMessage;
             modalClose.textContent = translation.modalClose;
+            copyrightText.textContent = translation.copyright;
+            privacyPolicyLink.textContent = translation.privacyPolicy;
+            termsOfUseLink.textContent = translation.termsOfUse;
             
             // Tema seçeneklerini güncelle
             themeSelect.querySelectorAll('option').forEach((option, index) => {
                 option.textContent = translation.themes[index];
             });
 
-            // Copyright metnini güncelle
-            document.querySelector('.copyright').innerHTML = 
-                `© <span id="currentYear">${new Date().getFullYear()}</span> • <span class="site-name">${siteName}</span> • ${translation.copyright}`;
+            // Modal içeriklerini güncelle
+            document.getElementById('privacyModalTitle').textContent = translation.privacyPolicy;
+            document.getElementById('termsModalTitle').textContent = translation.termsOfUse;
+            document.getElementById('privacyModalBody').innerHTML = privacyContent[lang] || privacyContent.tr;
+            document.getElementById('termsModalBody').innerHTML = termsContent[lang] || termsContent.tr;
         }
 
         function savePreferences(lang, theme) {
@@ -554,14 +805,19 @@
         }
 
         function showModal() {
+            openModal('settingsModal');
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
             modal.style.display = 'block';
-            
-            // 2.5 saniye sonra otomatik kapat
-            setTimeout(() => {
-                if (modal.style.display === 'block') {
-                    modal.style.display = 'none';
-                }
-            }, 2500);
+            createOpenSound();
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            createCloseSound();
         }
 
         // Tarayıcı dilini algıla
