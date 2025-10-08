@@ -39,6 +39,7 @@ services:
     volumes:
       - ./app:/home/${SFTP_USER}/upload
     command: "${SFTP_USER}:${SFTP_PASSWORD}:1001:1001:/upload"
+    user: "1000:1000"
     restart: unless-stopped
 
 volumes:
