@@ -40,7 +40,7 @@ services:
       - "22:22"
     volumes:
       - ./app:/home/sftp_user/upload
-    command: "${SFTP_USER}:${SFTP_PASSWORD}:1000:100"
+    command: "${SFTP_USER}:${SFTP_PASSWORD}:1000:100:/sftp_user"
     restart: unless-stopped
 
 volumes:
