@@ -32,8 +32,10 @@ services:
       - php
     restart: unless-stopped
 
-  ftp:
-    image: atmoz/sftp
+  sftp:
+    build:
+      context: .
+      dockerfile: sftp.Dockerfile
     ports:
       - "22:22"
     volumes:
