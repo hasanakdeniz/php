@@ -28,6 +28,7 @@ services:
 
   nginx:
     image: nginx:alpine
+    user: "1001:100"
     ports:
       - 80
       - 443
