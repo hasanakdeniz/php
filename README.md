@@ -1,4 +1,8 @@
-php prepared for dokploy
+lemp prepared for dokploy
+  - php
+  - nginx
+  - mariadb
+  - sftp
 
 - new services
   - compose
