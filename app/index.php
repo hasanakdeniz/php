@@ -382,7 +382,7 @@
             <div class="modal-body" id="privacyModalBody">
                 <!-- İçerik JavaScript ile eklenecek -->
             </div>
-            <button class="modal-close" id="closeModal" onclick="closeModal('privacyModal')">- KAPAT -</button>
+            <button class="modal-close" id="closeModalx" onclick="closeModal('privacyModal')">- KAPAT -</button>
         </div>
     </div>
 
@@ -397,7 +397,7 @@
             <div class="modal-body" id="termsModalBody">
                 <!-- İçerik JavaScript ile eklenecek -->
             </div>
-            <button class="modal-close" id="closeModal" onclick="closeModal('termsModal')">- KAPAT -</button>
+            <button class="modal-close" id="closeModalx" onclick="closeModal('termsModal')">- KAPAT -</button>
         </div>
     </div>
 
