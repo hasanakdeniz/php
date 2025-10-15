@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bakımda</title>
-    <link href="src/bootstrap.min.css" rel="stylesheet">
+    <link href="src/bootstrap.css" rel="stylesheet">
     <style>
         body {
             min-height: 100vh;
