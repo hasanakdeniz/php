@@ -493,8 +493,6 @@
             tr: {
                 title: "Sistem Bakımda",
                 message: "Web sitemiz şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamıyor. Hizmetinize en kısa sürede dönmek için çalışıyoruz.",
-                completionLabel: "Tamamlanma",
-                timeLabel: "Tahmini Süre",
                 copyright: "Tüm hakları saklıdır.",
                 privacyPolicy: "Gizlilik Politikası",
                 termsOfUse: "Kullanım Koşulları"
@@ -502,8 +500,6 @@
             en: {
                 title: "System Maintenance",
                 message: "Our website is currently unavailable due to planned maintenance work. We are working to return to service as soon as possible.",
-                completionLabel: "Completion",
-                timeLabel: "Estimated Time",
                 copyright: "All rights reserved.",
                 privacyPolicy: "Privacy Policy",
                 termsOfUse: "Terms of Use"
@@ -588,8 +584,6 @@
             // Temel içerikleri güncelle
             document.getElementById('title').textContent = translation.title;
             document.getElementById('message').textContent = translation.message;
-            document.getElementById('completionLabel').textContent = translation.completionLabel;
-            document.getElementById('timeLabel').textContent = translation.timeLabel;
             document.getElementById('copyrightText').textContent = translation.copyright;
             document.getElementById('privacyPolicyLink').textContent = translation.privacyPolicy;
             document.getElementById('termsOfUseLink').textContent = translation.termsOfUse;
