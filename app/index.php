@@ -382,7 +382,7 @@
             <div class="modal-body" id="privacyModalBody">
                 <!-- İçerik JavaScript ile eklenecek -->
             </div>
-            <button class="modal-close" onclick="closeModal('privacyModal')">- KAPAT -</button>
+            <button class="modal-close" id="closeModal" onclick="closeModal('privacyModal')">- KAPAT -</button>
         </div>
     </div>
 
@@ -397,7 +397,7 @@
             <div class="modal-body" id="termsModalBody">
                 <!-- İçerik JavaScript ile eklenecek -->
             </div>
-            <button class="modal-close" onclick="closeModal('termsModal')">- KAPAT -</button>
+            <button class="modal-close" id="closeModal" onclick="closeModal('termsModal')">- KAPAT -</button>
         </div>
     </div>
 
@@ -428,7 +428,8 @@
                 message: "Web sitemiz şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamıyor. Hizmetinize en kısa sürede dönmek için çalışıyoruz.",
                 copyright: "Tüm hakları saklıdır.",
                 privacyPolicy: "Gizlilik Politikası",
-                termsOfUse: "Kullanım Koşulları"
+                termsOfUse: "Kullanım Koşulları",
+                closeModalx: "- KAPAT -"
             },
             en: {
                 htmlTitle: "SITEMIZ - Maintenance Mode",
@@ -436,7 +437,8 @@
                 message: "Our website is currently unavailable due to planned maintenance work. We are working to return to service as soon as possible.",
                 copyright: "All rights reserved.",
                 privacyPolicy: "Privacy Policy",
-                termsOfUse: "Terms of Use"
+                termsOfUse: "Terms of Use",
+                closeModalx: "- CLOSE -"
             },
             de: {
                 htmlTitle: "SITEMIZ - Wartungsmodus",
@@ -444,7 +446,8 @@
                 message: "Unsere Website ist derzeit aufgrund von Wartungsarbeiten nicht verfügbar. Wir arbeiten daran, den Service so schnell wie möglich wieder aufzunehmen.",
                 copyright: "Alle Rechte vorbehalten.",
                 privacyPolicy: "Datenschutzerklärung",
-                termsOfUse: "Nutzungsbedingungen"
+                termsOfUse: "Nutzungsbedingungen",
+                closeModalx: "- SCHLIEßEN -"
             },
             fr: {
                 htmlTitle: "SITEMIZ - Mode Maintenance",
@@ -452,7 +455,8 @@
                 message: "Notre site web est actuellement indisponible en raison de travaux de maintenance planifiés. Nous travaillons pour revenir en service dès que possible.",
                 copyright: "Tous droits réservés.",
                 privacyPolicy: "Politique de Confidentialité",
-                termsOfUse: "Conditions d'Utilisation"
+                termsOfUse: "Conditions d'Utilisation",
+                closeModalx: "- FERMER -"
             },
             es: {
                 htmlTitle: "SITEMIZ - Modo Mantenimiento",
@@ -460,7 +464,8 @@
                 message: "Nuestro sitio web no está disponible actualmente debido a trabajos de mantenimiento planificados. Estamos trabajando para volver al servicio lo antes posible.",
                 copyright: "Todos los derechos reservados.",
                 privacyPolicy: "Política de Privacidad",
-                termsOfUse: "Términos de Uso"
+                termsOfUse: "Términos de Uso",
+                closeModalx: "- CERRAR -"
             },
             it: {
                 htmlTitle: "SITEMIZ - Modalità Manutenzione",
@@ -468,7 +473,8 @@
                 message: "Il nostro sito web è attualmente non disponibile a causa di lavori di manutenzione programmati. Stiamo lavorando per tornare al servizio il prima possibile.",
                 copyright: "Tutti i diritti riservati.",
                 privacyPolicy: "Privacy Policy",
-                termsOfUse: "Termini di Utilizzo"
+                termsOfUse: "Termini di Utilizzo",
+                closeModalx: "- CHIUDI -"
             },
             ja: {
                 htmlTitle: "SITEMIZ - メンテナンスモード",
@@ -476,7 +482,8 @@
                 message: "当ウェブサイトは現在、計画的なメンテナンス作業のため利用できません。できるだけ早くサービスを再開できるよう作業しています。",
                 copyright: "無断複写・転載を禁じます。",
                 privacyPolicy: "プライバシーポリシー",
-                termsOfUse: "利用規約"
+                termsOfUse: "利用規約",
+                closeModalx: "- 閉じる -"
             },
             ko: {
                 htmlTitle: "SITEMIZ - 점검 모드",
@@ -484,7 +491,8 @@
                 message: "현재 웹사이트가 계획된 점검 작업으로 인해 이용할 수 없습니다. 최대한 빨리 서비스를 재개할 수 있도록 노력하고 있습니다。",
                 copyright: "모든 권리 보유.",
                 privacyPolicy: "개인정보 처리방침",
-                termsOfUse: "이용약관"
+                termsOfUse: "이용약관",
+                closeModalx: "- 닫기 -"
             },
             ar: {
                 htmlTitle: "SITEMIZ - وضع الصيانة",
@@ -492,7 +500,8 @@
                 message: "موقعنا الإلكتروني غير متاح حاليًا due لأعمال الصيانة المخطط لها. نحن نعمل على العودة إلى الخدمة في أقرب وقت ممكن.",
                 copyright: "جميع الحقوق محفوظة.",
                 privacyPolicy: "سياسة الخصوصية",
-                termsOfUse: "شروط الاستخدام"
+                termsOfUse: "شروط الاستخدام",
+                closeModalx: "- إغلاق -"
             },
             ru: {
                 htmlTitle: "SITEMIZ - Режим Обслуживания",
@@ -500,7 +509,8 @@
                 message: "Наш веб-сайт в настоящее время недоступен due к плановым работам по техническому обслуживанию. Мы работаем над тем, чтобы вернуться к работе как можно скорее.",
                 copyright: "Все права защищены.",
                 privacyPolicy: "Политика Конфиденциальности",
-                termsOfUse: "Условия Использования"
+                termsOfUse: "Условия Использования",
+                closeModalx: "- ЗАКРЫТЬ -"
             }
         };
 
@@ -620,6 +630,7 @@
             // Diğer içerikleri güncelle
             document.getElementById('message').textContent = translation.message;
             document.getElementById('copyrightText').textContent = translation.copyright;
+            document.getElementById('closeModalx').textContent = translation.closeModalx;
             document.getElementById('privacyPolicyLink').textContent = translation.privacyPolicy;
             document.getElementById('termsOfUseLink').textContent = translation.termsOfUse;
             
