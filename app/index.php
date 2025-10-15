@@ -353,7 +353,7 @@
 <body>
     <div class="container">
         <div class="emoji">⚙️</div>
-        <h1 id="title">SITEMIZ - Sistem Bakımda</h1>
+        <h1 id="title">Sistem Bakımda</h1>
         <div class="site-name" id="siteNameDisplay">SITEMIZ</div>
         <p id="message">Web sitemiz şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamıyor. Hizmetinize en kısa sürede dönmek için çalışıyoruz.</p>
         
