@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakım Modu - SITEMIZ</title>
+    <title id="htmlTitle">SITEMIZ - Bakım Modu</title>
     <style>
         * {
             margin: 0;
@@ -423,70 +423,80 @@
 
         const translations = {
             tr: {
-                title: "SITEMIZ - Sistem Bakımda",
+                htmlTitle: "SITEMIZ - Bakım Modu",
+                title: "Sistem Bakımda",
                 message: "Web sitemiz şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamıyor. Hizmetinize en kısa sürede dönmek için çalışıyoruz.",
                 copyright: "Tüm hakları saklıdır.",
                 privacyPolicy: "Gizlilik Politikası",
                 termsOfUse: "Kullanım Koşulları"
             },
             en: {
-                title: "SITEMIZ - System Maintenance",
+                htmlTitle: "SITEMIZ - Maintenance Mode",
+                title: "System Maintenance",
                 message: "Our website is currently unavailable due to planned maintenance work. We are working to return to service as soon as possible.",
                 copyright: "All rights reserved.",
                 privacyPolicy: "Privacy Policy",
                 termsOfUse: "Terms of Use"
             },
             de: {
-                title: "SITEMIZ - Systemwartung",
+                htmlTitle: "SITEMIZ - Wartungsmodus",
+                title: "Systemwartung",
                 message: "Unsere Website ist derzeit aufgrund von Wartungsarbeiten nicht verfügbar. Wir arbeiten daran, den Service so schnell wie möglich wieder aufzunehmen.",
                 copyright: "Alle Rechte vorbehalten.",
                 privacyPolicy: "Datenschutzerklärung",
                 termsOfUse: "Nutzungsbedingungen"
             },
             fr: {
-                title: "SITEMIZ - Maintenance Système",
+                htmlTitle: "SITEMIZ - Mode Maintenance",
+                title: "Maintenance Système",
                 message: "Notre site web est actuellement indisponible en raison de travaux de maintenance planifiés. Nous travaillons pour revenir en service dès que possible.",
                 copyright: "Tous droits réservés.",
                 privacyPolicy: "Politique de Confidentialité",
                 termsOfUse: "Conditions d'Utilisation"
             },
             es: {
-                title: "SITEMIZ - Mantenimiento del Sistema",
+                htmlTitle: "SITEMIZ - Modo Mantenimiento",
+                title: "Mantenimiento del Sistema",
                 message: "Nuestro sitio web no está disponible actualmente debido a trabajos de mantenimiento planificados. Estamos trabajando para volver al servicio lo antes posible.",
                 copyright: "Todos los derechos reservados.",
                 privacyPolicy: "Política de Privacidad",
                 termsOfUse: "Términos de Uso"
             },
             it: {
-                title: "SITEMIZ - Manutenzione del Sistema",
+                htmlTitle: "SITEMIZ - Modalità Manutenzione",
+                title: "Manutenzione del Sistema",
                 message: "Il nostro sito web è attualmente non disponibile a causa di lavori di manutenzione programmati. Stiamo lavorando per tornare al servizio il prima possibile.",
                 copyright: "Tutti i diritti riservati.",
                 privacyPolicy: "Privacy Policy",
                 termsOfUse: "Termini di Utilizzo"
             },
             ja: {
-                title: "SITEMIZ - システムメンテナンス",
+                htmlTitle: "SITEMIZ - メンテナンスモード",
+                title: "システムメンテナンス",
                 message: "当ウェブサイトは現在、計画的なメンテナンス作業のため利用できません。できるだけ早くサービスを再開できるよう作業しています。",
                 copyright: "無断複写・転載を禁じます。",
                 privacyPolicy: "プライバシーポリシー",
                 termsOfUse: "利用規約"
             },
             ko: {
-                title: "SITEMIZ - 시스템 점검",
-                message: "현재 웹사이트가 계획된 점검 작업으로 인해 이용할 수 없습니다. 최대한 빨리 서비스를 재개할 수 있도록 노력하고 있습니다.",
+                htmlTitle: "SITEMIZ - 점검 모드",
+                title: "시스템 점검",
+                message: "현재 웹사이트가 계획된 점검 작업으로 인해 이용할 수 없습니다. 최대한 빨리 서비스를 재개할 수 있도록 노력하고 있습니다。",
                 copyright: "모든 권리 보유.",
                 privacyPolicy: "개인정보 처리방침",
                 termsOfUse: "이용약관"
             },
             ar: {
-                title: "SITEMIZ - صيانة النظام",
+                htmlTitle: "SITEMIZ - وضع الصيانة",
+                title: "صيانة النظام",
                 message: "موقعنا الإلكتروني غير متاح حاليًا due لأعمال الصيانة المخطط لها. نحن نعمل على العودة إلى الخدمة في أقرب وقت ممكن.",
                 copyright: "جميع الحقوق محفوظة.",
                 privacyPolicy: "سياسة الخصوصية",
                 termsOfUse: "شروط الاستخدام"
             },
             ru: {
-                title: "SITEMIZ - Обслуживание Системы",
+                htmlTitle: "SITEMIZ - Режим Обслуживания",
+                title: "Обслуживание Системы",
                 message: "Наш веб-сайт в настоящее время недоступен due к плановым работам по техническому обслуживанию. Мы работаем над тем, чтобы вернуться к работе как можно скорее.",
                 copyright: "Все права защищены.",
                 privacyPolicy: "Политика Конфиденциальности",
@@ -601,7 +611,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const translation = translations[currentLang] || translations['en'];
             
-            // Başlıkta site ismi ile birlikte göster
+            // HTML title'ı güncelle (tarayıcı sekmesinde görünen)
+            document.getElementById('htmlTitle').textContent = translation.htmlTitle.replace('SITEMIZ', siteName);
+            
+            // Sayfa başlığını güncelle (içerikte görünen)
             document.getElementById('title').textContent = translation.title.replace('SITEMIZ', siteName);
             
             // Diğer içerikleri güncelle
