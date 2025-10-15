@@ -144,6 +144,7 @@
 <body>
     <div class="container main-container">
         <div class="maintenance-icon">🔧</div>
+        <h2 class="mb-3 fw-bold" id="siteNameTitle" style="font-size: 2.5em; letter-spacing: 2px;"></h2>
         <h1 id="title">Bakımda</h1>
         <p class="lead" id="description">Sitemiz şu anda bakım çalışması yapıyor. En kısa sürede geri döneceğiz!</p>
     </div>
@@ -235,7 +236,12 @@
 
         // Site adını URL'den al
         const siteName = window.location.hostname.replace(/^www\./, '').split('.')[0];
-        document.getElementById('siteName').textContent = siteName.charAt(0).toUpperCase() + siteName.slice(1);
+        const siteNameUpper = siteName.toUpperCase();
+        const siteNameCapitalized = siteName.charAt(0).toUpperCase() + siteName.slice(1);
+        
+        document.getElementById('siteNameTitle').textContent = siteNameUpper;
+        document.getElementById('siteName').textContent = siteNameCapitalized;
+        document.title = 'Bakımda - ' + siteNameCapitalized;
 
         // Yılı otomatik güncelle
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -453,6 +459,9 @@
         document.getElementById('closeTerms').textContent = lang.close;
         document.getElementById('privacyContent').innerHTML = lang.privacyContent;
         document.getElementById('termsContent').innerHTML = lang.termsContent;
+        
+        // Title'ı güncelle
+        document.title = lang.title + ' - ' + siteNameCapitalized;
     </script>
 </body>
 </html>
