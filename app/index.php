@@ -186,7 +186,7 @@
         </div>
     </div>
 
-    <script src="src/bootstrap.bundle.min.js"></script>
+    <script src="src/bootstrap.js"></script>
     <script>
         // Ses efektleri
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
