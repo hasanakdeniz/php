@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakım Modu - SITEMIZ</title>
+    <title>Bakım Modu - ${siteName}</title>
     <style>
         * {
             margin: 0;
@@ -141,14 +141,6 @@
             100% { transform: translateX(100%); }
         }
 
-        .status-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
         .status-item {
             text-align: center;
         }
@@ -165,37 +157,6 @@
             color: #a0a0a0;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .social-links {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: #b0b0b0;
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .social-links a:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .copyright {
@@ -380,19 +341,9 @@
             .site-name {
                 font-size: 1rem;
             }
-            
-            .status-info {
-                gap: 20px;
-            }
 
             .modal-content {
                 padding: 30px 20px;
-            }
-
-            .social-links a {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
             }
 
             .legal-links {
@@ -429,24 +380,6 @@
         
         <div class="progress-container">
             <div class="progress-bar"></div>
-        </div>
-
-        <div class="status-info">
-            <div class="status-item">
-                <div class="status-value" id="completionPercent">%85</div>
-                <div class="status-label" id="completionLabel">Tamamlanma</div>
-            </div>
-            <div class="status-item">
-                <div class="status-value" id="timeRemaining">2s 15dk</div>
-                <div class="status-label" id="timeLabel">Tahmini Süre</div>
-            </div>
-        </div>
-
-        <div class="social-links">
-            <a href="#" title="Twitter">📱</a>
-            <a href="#" title="Instagram">💼</a>
-            <a href="#" title="LinkedIn">🔗</a>
-            <a href="#" title="Email">📧</a>
         </div>
 
         <div class="copyright">
