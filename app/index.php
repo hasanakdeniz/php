@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakım Modu</title>
+    <title>Bakım Modu - SITEMIZ</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +27,7 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border-radius: 24px;
-            padding: 50px 40px;
+            padding: 60px 40px;
             text-align: center;
             box-shadow: 
                 0 25px 50px rgba(0, 0, 0, 0.25),
@@ -51,7 +51,7 @@
 
         .emoji {
             font-size: 4rem;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
         }
@@ -63,18 +63,19 @@
 
         h1 {
             font-size: 2.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #ffffff, #a0a0a0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 300;
             letter-spacing: -0.5px;
+            line-height: 1.3;
         }
 
         .site-name {
             font-size: 1.1rem;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             color: #b0b0b0;
             font-weight: 400;
             text-transform: uppercase;
@@ -96,7 +97,7 @@
 
         p {
             font-size: 1.05rem;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             color: #c0c0c0;
             font-weight: 300;
             line-height: 1.7;
@@ -141,65 +142,8 @@
             100% { transform: translateX(100%); }
         }
 
-        .status-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .status-item {
-            text-align: center;
-        }
-
-        .status-value {
-            font-size: 1.8rem;
-            font-weight: 200;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .status-label {
-            font-size: 0.85rem;
-            color: #a0a0a0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .social-links {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: #b0b0b0;
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .social-links a:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
         .copyright {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 0.8rem;
             color: #808080;
             line-height: 1.5;
@@ -215,7 +159,7 @@
         }
 
         .legal-links {
-            margin-top: 15px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -369,7 +313,7 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 25px;
+                padding: 50px 25px;
                 margin: 10px;
             }
             
@@ -380,19 +324,9 @@
             .site-name {
                 font-size: 1rem;
             }
-            
-            .status-info {
-                gap: 20px;
-            }
 
             .modal-content {
                 padding: 30px 20px;
-            }
-
-            .social-links a {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
             }
 
             .legal-links {
@@ -413,24 +347,20 @@
             .modal-title {
                 font-size: 1.3rem;
             }
-            
-            .status-value {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="emoji">⚙️</div>
-        <h1 id="title">Sistem Bakımda</h1>
+        <h1 id="title">SITEMIZ - Sistem Bakımda</h1>
         <div class="site-name" id="siteNameDisplay">SITEMIZ</div>
         <p id="message">Web sitemiz şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamıyor. Hizmetinize en kısa sürede dönmek için çalışıyoruz.</p>
         
         <div class="progress-container">
             <div class="progress-bar"></div>
         </div>
-        
+
         <div class="copyright">
             © <span id="currentYear">2025</span> • <span class="site-name" id="copyrightSiteName">SITEMIZ</span> • <span id="copyrightText">Tüm hakları saklıdır.</span>
         </div>
@@ -483,7 +413,9 @@
         // Dil otomatik algılama
         function getBrowserLanguage() {
             const browserLang = navigator.language || navigator.userLanguage;
-            return browserLang.startsWith('tr') ? 'tr' : 'en';
+            const supportedLangs = ['tr', 'en', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'ar', 'ru'];
+            const lang = browserLang.split('-')[0];
+            return supportedLangs.includes(lang) ? lang : 'en';
         }
 
         const siteName = getSiteNameFromURL();
@@ -491,18 +423,74 @@
 
         const translations = {
             tr: {
-                title: "Sistem Bakımda",
+                title: "SITEMIZ - Sistem Bakımda",
                 message: "Web sitemiz şu anda planlı bakım çalışmaları nedeniyle geçici olarak kullanılamıyor. Hizmetinize en kısa sürede dönmek için çalışıyoruz.",
                 copyright: "Tüm hakları saklıdır.",
                 privacyPolicy: "Gizlilik Politikası",
                 termsOfUse: "Kullanım Koşulları"
             },
             en: {
-                title: "System Maintenance",
+                title: "SITEMIZ - System Maintenance",
                 message: "Our website is currently unavailable due to planned maintenance work. We are working to return to service as soon as possible.",
                 copyright: "All rights reserved.",
                 privacyPolicy: "Privacy Policy",
                 termsOfUse: "Terms of Use"
+            },
+            de: {
+                title: "SITEMIZ - Systemwartung",
+                message: "Unsere Website ist derzeit aufgrund von Wartungsarbeiten nicht verfügbar. Wir arbeiten daran, den Service so schnell wie möglich wieder aufzunehmen.",
+                copyright: "Alle Rechte vorbehalten.",
+                privacyPolicy: "Datenschutzerklärung",
+                termsOfUse: "Nutzungsbedingungen"
+            },
+            fr: {
+                title: "SITEMIZ - Maintenance Système",
+                message: "Notre site web est actuellement indisponible en raison de travaux de maintenance planifiés. Nous travaillons pour revenir en service dès que possible.",
+                copyright: "Tous droits réservés.",
+                privacyPolicy: "Politique de Confidentialité",
+                termsOfUse: "Conditions d'Utilisation"
+            },
+            es: {
+                title: "SITEMIZ - Mantenimiento del Sistema",
+                message: "Nuestro sitio web no está disponible actualmente debido a trabajos de mantenimiento planificados. Estamos trabajando para volver al servicio lo antes posible.",
+                copyright: "Todos los derechos reservados.",
+                privacyPolicy: "Política de Privacidad",
+                termsOfUse: "Términos de Uso"
+            },
+            it: {
+                title: "SITEMIZ - Manutenzione del Sistema",
+                message: "Il nostro sito web è attualmente non disponibile a causa di lavori di manutenzione programmati. Stiamo lavorando per tornare al servizio il prima possibile.",
+                copyright: "Tutti i diritti riservati.",
+                privacyPolicy: "Privacy Policy",
+                termsOfUse: "Termini di Utilizzo"
+            },
+            ja: {
+                title: "SITEMIZ - システムメンテナンス",
+                message: "当ウェブサイトは現在、計画的なメンテナンス作業のため利用できません。できるだけ早くサービスを再開できるよう作業しています。",
+                copyright: "無断複写・転載を禁じます。",
+                privacyPolicy: "プライバシーポリシー",
+                termsOfUse: "利用規約"
+            },
+            ko: {
+                title: "SITEMIZ - 시스템 점검",
+                message: "현재 웹사이트가 계획된 점검 작업으로 인해 이용할 수 없습니다. 최대한 빨리 서비스를 재개할 수 있도록 노력하고 있습니다.",
+                copyright: "모든 권리 보유.",
+                privacyPolicy: "개인정보 처리방침",
+                termsOfUse: "이용약관"
+            },
+            ar: {
+                title: "SITEMIZ - صيانة النظام",
+                message: "موقعنا الإلكتروني غير متاح حاليًا due لأعمال الصيانة المخطط لها. نحن نعمل على العودة إلى الخدمة في أقرب وقت ممكن.",
+                copyright: "جميع الحقوق محفوظة.",
+                privacyPolicy: "سياسة الخصوصية",
+                termsOfUse: "شروط الاستخدام"
+            },
+            ru: {
+                title: "SITEMIZ - Обслуживание Системы",
+                message: "Наш веб-сайт в настоящее время недоступен due к плановым работам по техническому обслуживанию. Мы работаем над тем, чтобы вернуться к работе как можно скорее.",
+                copyright: "Все права защищены.",
+                privacyPolicy: "Политика Конфиденциальности",
+                termsOfUse: "Условия Использования"
             }
         };
 
@@ -537,6 +525,21 @@
 
                 <h3>Changes</h3>
                 <p>We reserve the right to update this privacy policy. Changes will be posted on this page.</p>
+            `,
+            de: `
+                <h3>Datenerfassung</h3>
+                <p>Bei ${siteName} schätzen wir die Privatsphäre unserer Besucher. Während der Wartung erfassen wir folgende Daten:</p>
+                <ul>
+                    <li>IP-Adresse (anonymisiert)</li>
+                    <li>Browsertyp und Version</li>
+                    <li>Besuchszeit und Datum</li>
+                </ul>
+
+                <h3>Datensicherheit</h3>
+                <p>Die begrenzten Daten, die wir sammeln, werden mit angemessenen Sicherheitsmaßnahmen geschützt.</p>
+
+                <h3>Änderungen</h3>
+                <p>Wir behalten uns das Recht vor, diese Datenschutzerklärung zu aktualisieren. Änderungen werden auf dieser Seite veröffentlicht.</p>
             `
         };
 
@@ -574,15 +577,34 @@
 
                 <h3>Right to Modify</h3>
                 <p>${siteName} reserves the right to modify these terms of use at any time.</p>
+            `,
+            de: `
+                <h3>Annahme</h3>
+                <p>Durch die Nutzung dieser Wartungsseite akzeptieren Sie die folgenden Nutzungsbedingungen.</p>
+
+                <h3>Serviceunterbrechung</h3>
+                <p>${siteName} ist derzeit aufgrund geplanter Wartungsarbeiten vorübergehend nicht verfügbar.</p>
+
+                <h3>Benutzerverantwortlichkeiten</h3>
+                <p>Bei der Nutzung dieser Seite erklären Sie sich damit einverstanden:</p>
+                <ul>
+                    <li>Die Seite nicht zu missbrauchen</li>
+                    <li>Keine automatisierten Bots oder Skripte zu verwenden</li>
+                </ul>
+
+                <h3>Änderungsrecht</h3>
+                <p>${siteName} behält sich das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern.</p>
             `
         };
 
         // Sayfa yüklendiğinde
         document.addEventListener('DOMContentLoaded', function() {
-            const translation = translations[currentLang];
+            const translation = translations[currentLang] || translations['en'];
             
-            // Temel içerikleri güncelle
-            document.getElementById('title').textContent = translation.title;
+            // Başlıkta site ismi ile birlikte göster
+            document.getElementById('title').textContent = translation.title.replace('SITEMIZ', siteName);
+            
+            // Diğer içerikleri güncelle
             document.getElementById('message').textContent = translation.message;
             document.getElementById('copyrightText').textContent = translation.copyright;
             document.getElementById('privacyPolicyLink').textContent = translation.privacyPolicy;
@@ -598,42 +620,21 @@
             // Modal içeriklerini güncelle
             document.getElementById('privacyModalTitle').textContent = translation.privacyPolicy;
             document.getElementById('termsModalTitle').textContent = translation.termsOfUse;
-            document.getElementById('privacyModalBody').innerHTML = privacyContent[currentLang] || privacyContent.tr;
-            document.getElementById('termsModalBody').innerHTML = termsContent[currentLang] || termsContent.tr;
+            document.getElementById('privacyModalBody').innerHTML = (privacyContent[currentLang] || privacyContent['en']).replace(/SITEMIZ/g, siteName);
+            document.getElementById('termsModalBody').innerHTML = (termsContent[currentLang] || termsContent['en']).replace(/SITEMIZ/g, siteName);
             
             // Tarihleri güncelle
             const now = new Date();
             document.getElementById('privacyDate').textContent = now.toLocaleDateString(currentLang);
             document.getElementById('termsDate').textContent = now.toLocaleDateString(currentLang);
             
-            // Rastgele ilerleme yüzdesi ve süre
-            updateProgressInfo();
-            
             // Emoji değiştirme
             rotateEmoji();
         });
 
-        // İlerleme bilgilerini güncelle
-        function updateProgressInfo() {
-            const completion = 75 + Math.floor(Math.random() * 20); // %75-95 arası
-            const hours = Math.floor(Math.random() * 3); // 0-2 saat
-            const minutes = 15 + Math.floor(Math.random() * 45); // 15-59 dakika
-            
-            document.getElementById('completionPercent').textContent = `%${completion}`;
-            
-            if (hours > 0) {
-                document.getElementById('timeRemaining').textContent = `${hours}s ${minutes}dk`;
-            } else {
-                document.getElementById('timeRemaining').textContent = `${minutes}dk`;
-            }
-            
-            // Her 30 saniyede bir güncelle
-            setTimeout(updateProgressInfo, 30000);
-        }
-
         // Emoji değiştirme
         function rotateEmoji() {
-            const emojis = ['⚙️', '🔧', '🛠️', '⏳', '📱', '💻', '🔨', '🎯'];
+            const emojis = ['⚙️', '🔧', '🛠️', '⏳', '📱', '💻'];
             const emojiElement = document.querySelector('.emoji');
             let currentIndex = 0;
             
