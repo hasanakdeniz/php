@@ -30,6 +30,7 @@
         .main-container {
             text-align: center;
             animation: fadeIn 1s ease-in;
+            padding: 20px;
         }
 
         @keyframes fadeIn {
@@ -38,9 +39,16 @@
         }
 
         .maintenance-icon {
-            font-size: 5em;
-            margin-bottom: 30px;
+            font-size: 3.5em;
+            margin-bottom: 20px;
             animation: pulse 2s infinite;
+        }
+
+        @media (min-width: 768px) {
+            .maintenance-icon {
+                font-size: 5em;
+                margin-bottom: 30px;
+            }
         }
 
         @keyframes pulse {
@@ -49,14 +57,42 @@
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: 2em;
+            margin-bottom: 15px;
             font-weight: 700;
         }
 
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3em;
+                margin-bottom: 20px;
+            }
+        }
+
+        h2.site-name {
+            font-size: 1.8em;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            h2.site-name {
+                font-size: 2.5em;
+                margin-bottom: 25px;
+            }
+        }
+
         .lead {
-            font-size: 1.3em;
+            font-size: 1.1em;
             opacity: 0.95;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 768px) {
+            .lead {
+                font-size: 1.3em;
+                padding: 0;
+            }
         }
 
         .footer-section {
