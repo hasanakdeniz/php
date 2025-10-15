@@ -8,11 +8,6 @@ services:
       MYSQL_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
       - data-db:/var/lib/mysql
-    healthcheck:
-     test: ["CMD", "mariadb-admin", "ping", "-h", "db", "-u bakimda", "-p ${MARIADB_PASSWORD}"]
-     interval: 5s
-     timeout: 3s
-     retries: 5
     restart: unless-stopped
     
   php:
@@ -22,8 +17,7 @@ services:
     volumes:
       - ./app:/var/www/html
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     restart: unless-stopped
 
   nginx:
